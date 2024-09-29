@@ -2,8 +2,8 @@
 
 set -o errexit
 
-poetry install --no-dev
+poetry install
 
 poetry run python manage.py collectstatic --no-input
 
-python run python manage.py migrate
+poetry run python manage.py migrate
