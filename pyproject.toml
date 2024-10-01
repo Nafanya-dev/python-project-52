@@ -15,6 +15,7 @@ psycopg2-binary = "^2.9.9"
 whitenoise = "^6.7.0"
 gunicorn = "^23.0.0"
 uvicorn = "^0.31.0"
+django-bootstrap5 = "^24.3"
 
 
 [tool.poetry.group.dev.dependencies]
