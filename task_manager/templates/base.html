@@ -13,7 +13,7 @@
     {% bootstrap_css %}
 </head>
 
-<body class="d-flex flex-column h-100 mt-5 bg-light">
+<body class="d-flex flex-column h-100 mt-4 bg-light">
 
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -31,7 +31,7 @@
             <a class="nav-link me-2 fs-5" href="#">{% trans "Login" %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5" href="#">{% trans "Registration" %}</a>
+            <a class="nav-link fs-5" href="{% url 'register-user-page' %}">{% trans "Registration" %}</a>
           </li>
         </ul>
       </div>
@@ -39,13 +39,13 @@
   </nav>
 </header>
 
-<main class="flex-shrink-0 mt-5">
+<main class="flex-shrink-0 mt-4">
   <div class="container mt-5">
       {% block content %}{% endblock %}
   </div>
 </main>
 
-<footer class="footer mt-auto py-3 bg-light mt-5">
+<footer class="footer mt-auto py-3 bg-light mt-2">
   <div class="container">
   </div>
 </footer>

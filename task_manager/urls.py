@@ -21,7 +21,10 @@ from task_manager import views
 
 
 urlpatterns = [
+    # Main page
     path('', views.HomeView.as_view(), name="home-page"),
+    # Users page
     path('users/', include('task_manager.users.urls')),
+
     path('admin/', admin.site.urls),
 ]

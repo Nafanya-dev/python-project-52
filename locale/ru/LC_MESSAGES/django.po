@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-02 14:52+0300\n"
+"POT-Creation-Date: 2024-10-02 23:51+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,10 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: task_manager/settings.py:117
+msgid "Your password must contain at least 3 characters."
+msgstr "Ваш пароль должен содержать как минимум 3 символа."
 
 #: task_manager/templates/base.html:12 task_manager/templates/base.html:21
 msgid "Task manager"
@@ -34,8 +38,46 @@ msgid "Login"
 msgstr "Вход"
 
 #: task_manager/templates/base.html:34
+#: task_manager/users/templates/users/register_user.html:9
 msgid "Registration"
 msgstr "Регистрация"
+
+#: task_manager/users/forms.py:11
+msgid "First name"
+msgstr "Имя"
+
+#: task_manager/users/forms.py:15
+msgid "Last name"
+msgstr "Фамилия"
+
+#: task_manager/users/forms.py:19
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: task_manager/users/forms.py:20
+msgid ""
+"Required field. No more than\n"
+"                                           150 characters. Only letters,\n"
+"                                           numbers and symbols @/./+/-/_."
+msgstr "Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./+/-/_."
+
+#: task_manager/users/forms.py:24
+msgid "Password confirmation"
+msgstr "Подтверждение пароля"
+
+#: task_manager/users/forms.py:28
+msgid ""
+"To confirm, please enter your\n"
+"                                            password again."
+msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
+
+#: task_manager/users/forms.py:42
+msgid "Password"
+msgstr "Пароль"
+
+#: task_manager/users/templates/users/register_user.html:30
+msgid "Sign up"
+msgstr "Зарегистрировать"
 
 #: task_manager/users/templates/users/user_list.html:13
 msgid "User name"
