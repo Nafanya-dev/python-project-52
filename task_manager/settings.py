@@ -42,6 +42,11 @@ ALLOWED_HOSTS = [
     'webserver',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://task-manager-1esk.onrender.com',
+    'http://localhost',
+    'http://127.0.0.1',
+]
 
 # Application definition
 
