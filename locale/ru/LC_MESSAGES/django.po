@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 17:47+0300\n"
+"POT-Creation-Date: 2024-10-02 14:52+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,11 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
-#: task_manager/templates/base.html:21
+
+#: task_manager/templates/base.html:12 task_manager/templates/base.html:21
 msgid "Task manager"
 msgstr "Менеджер задач"
 
 #: task_manager/templates/base.html:28
+#: task_manager/users/templates/users/user_list.html:8
 msgid "Users"
 msgstr "Пользователи"
 
@@ -34,3 +36,23 @@ msgstr "Вход"
 #: task_manager/templates/base.html:34
 msgid "Registration"
 msgstr "Регистрация"
+
+#: task_manager/users/templates/users/user_list.html:13
+msgid "User name"
+msgstr "Имя пользователя"
+
+#: task_manager/users/templates/users/user_list.html:14
+msgid "Full name"
+msgstr "Полное имя"
+
+#: task_manager/users/templates/users/user_list.html:15
+msgid "Creation date"
+msgstr "Дата создания"
+
+#: task_manager/users/templates/users/user_list.html:25
+msgid "Change"
+msgstr "Изменить"
+
+#: task_manager/users/templates/users/user_list.html:25
+msgid "Delete"
+msgstr "Удалить"
