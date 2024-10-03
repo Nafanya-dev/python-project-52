@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+
+{% block content %}
+<div class="row">
+  <div class="col-9 col-sm-7 col-md-5 mx-auto mb-3">
+    <div class="p-3 shadow">
+      <h1>{% trans "Delete user" %}</h1>
+      <form method="post">
+        <p>{% trans "Are you sure you want to delete" %} {{ user.first_name }} {{ user.last_name }}?</p>
+        {% csrf_token %}
+        <input type="submit" class="btn btn-danger mt-2" value='{% trans "Yes, Delete" %}'>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

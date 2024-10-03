@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView
 
 from django.contrib.auth.models import User
 from task_manager.users.forms import RegisterUserForm
@@ -35,3 +35,10 @@ class UpdateUserView(UpdateView):
     def get_object(self, queryset=None):
         pk = self.kwargs.get('pk')
         return get_object_or_404(User, pk=pk)
+
+
+class DeleteUserView(DetailView):
+    model = User
+    template_name = 'users/delete_user.html'
+    context_object_name = 'user'
+    success_url = reverse_lazy('users-list-page')
