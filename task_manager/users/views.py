@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 
 from django.contrib.auth.models import User
 from task_manager.users.forms import RegisterUserForm
@@ -25,3 +25,13 @@ class RegisterUserView(CreateView):
     form_class = RegisterUserForm
     template_name = 'users/register_user.html'
     success_url = reverse_lazy('users-list-page')
+
+
+class UpdateUserView(UpdateView):
+    form_class = RegisterUserForm
+    template_name = 'users/update_user.html'
+    success_url = reverse_lazy('users-list-page')
+
+    def get_object(self, queryset=None):
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(User, pk=pk)

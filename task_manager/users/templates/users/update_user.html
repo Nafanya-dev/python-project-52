@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+
+{% block content %}
+<div class="row">
+  <div class="col-11 col-sm-10 col-md-8 mx-auto mb-2">
+    <div class="p-3 shadow">
+      <h1>{% trans "Change user" %}</h1>
+      <form method="post">
+        {% csrf_token %}
+        {% for f in form %}
+        <div class="mb-2">
+          <div class="form-floating">
+            <input type="{{ f.field.widget.input_type }}" name="{{ f.name }}" id="{{ f.id_for_label }}"
+               class="form-control" value="{{ f.value|default_if_none:'' }}" placeholder="{{ f.label }}"
+               {% if f.name == 'username' %} autofocus {% endif %} required >
+            <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+          </div>
+          <div class="form-text">
+            {{ f.help_text }}
+          </div>
+            {% if f.errors %}
+              <div class="text-danger">
+                {{ f.errors }}
+              </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-outline-success mt-2">{% trans "Change" %}</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

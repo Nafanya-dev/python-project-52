@@ -8,4 +8,7 @@ urlpatterns = [
     path('create/',
          views.RegisterUserView.as_view(),
          name='register-user-page'),
+    path('<int:pk>/update/',
+         views.UpdateUserView.as_view(),
+         name='update-user-page'),
 ]

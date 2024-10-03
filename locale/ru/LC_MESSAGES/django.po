@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-02 23:51+0300\n"
+"POT-Creation-Date: 2024-10-03 14:03+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: task_manager/settings.py:117
+#: task_manager/settings.py:122
 msgid "Your password must contain at least 3 characters."
 msgstr "Ваш пароль должен содержать как минимум 3 символа."
 
@@ -59,7 +59,9 @@ msgid ""
 "Required field. No more than\n"
 "                                           150 characters. Only letters,\n"
 "                                           numbers and symbols @/./+/-/_."
-msgstr "Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./+/-/_."
+msgstr ""
+"Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./"
+"+/-/_."
 
 #: task_manager/users/forms.py:24
 msgid "Password confirmation"
@@ -75,9 +77,22 @@ msgstr "Для подтверждения введите, пожалуйста, 
 msgid "Password"
 msgstr "Пароль"
 
+#: task_manager/users/forms.py:56
+msgid "A user with that username already exists."
+msgstr "Пользователь с таким именем уже существует."
+
 #: task_manager/users/templates/users/register_user.html:30
 msgid "Sign up"
 msgstr "Зарегистрировать"
+
+#: task_manager/users/templates/users/update_user.html:9
+msgid "Change user"
+msgstr "Изменение пользователя"
+
+#: task_manager/users/templates/users/update_user.html:30
+#: task_manager/users/templates/users/user_list.html:25
+msgid "Change"
+msgstr "Изменить"
 
 #: task_manager/users/templates/users/user_list.html:13
 msgid "User name"
@@ -90,10 +105,6 @@ msgstr "Полное имя"
 #: task_manager/users/templates/users/user_list.html:15
 msgid "Creation date"
 msgstr "Дата создания"
-
-#: task_manager/users/templates/users/user_list.html:25
-msgid "Change"
-msgstr "Изменить"
 
 #: task_manager/users/templates/users/user_list.html:25
 msgid "Delete"

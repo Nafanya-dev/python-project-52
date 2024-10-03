@@ -22,7 +22,7 @@
                             <td>{{ user.username }}</td>
                             <td>{{ user.first_name }} {{ user.last_name }}</td>
                             <td>{{ user.date_joined|date:"d.m.Y H:i" }}</td>
-                            <td><a class="mb-2 btn btn-sm btn-success" href="#">{% trans "Change" %}</a><br><a class="btn btn-sm btn-outline-danger" href="">{% trans "Delete" %}</a></td>
+                            <td><a class="mb-2 btn btn-sm btn-success" href="{% url 'update-user-page' user.id %}">{% trans "Change" %}</a><br><a class="btn btn-sm btn-outline-danger" href="">{% trans "Delete" %}</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>

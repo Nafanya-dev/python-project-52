@@ -41,3 +41,18 @@ class RegisterUserForm(UserCreationForm):
         labels = {
             'password1': _("Password"),
         }
+
+    def __init__(self, *args, **kwargs):
+        self.instance = kwargs.get('instance', None)
+        super().__init__(*args, **kwargs)
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        if self.instance and self.instance.username == username:
+            return username
+
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError(
+                  _("A user with that username already exists."))
+
+        return username
