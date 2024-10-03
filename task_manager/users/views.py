@@ -34,14 +34,37 @@ class RegisterUserView(CreateView):
     success_url = reverse_lazy('login-page')
 
 
-class UpdateUserView(UpdateView):
+class UpdateUserView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """
+    Handles requests to ('/users/<pk>/update/').
+
+    If there is permission:
+    Method GET Returns the HTML code of form with user data for editing
+    Method POST Updates user data adn redirects to the users list page
+
+    If there is no permission:
+    redirects to the users list page.
+    show a message about no permission
+    """
     form_class = RegisterUserForm
     template_name = 'users/update_user.html'
     success_url = reverse_lazy('users-list-page')
+    login_url = reverse_lazy('login-page')
 
     def get_object(self, queryset=None):
-        pk = self.kwargs.get('pk')
-        return get_object_or_404(User, pk=pk)
+        user_id = self.kwargs.get('pk')
+        return get_object_or_404(User, pk=user_id)
+
+    def test_func(self):
+        user_to_update = self.get_object()
+        return self.request.user == user_to_update
+
+    def handle_no_permission(self):
+        if not self.request.user.is_authenticated:
+            return redirect(self.get_login_url())
+        else:
+            messages.error(self.request, _("You do not have permission to change another user."))
+            return redirect('users-list-page')
 
 
 class DeleteUserView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -52,7 +75,8 @@ class DeleteUserView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     login_url = reverse_lazy('login-page')
 
     def test_func(self):
-        return self.request.user == self.get_object()
+        user_to_delete = self.get_object()
+        return self.request.user == user_to_delete
 
     def handle_no_permission(self):
         if not self.request.user.is_authenticated:
