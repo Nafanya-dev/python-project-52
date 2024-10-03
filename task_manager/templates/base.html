@@ -27,12 +27,30 @@
           <li class="nav-item">
             <a class="nav-link me-2 fs-5" href="{% url 'users-list-page' %}">{% trans "Users" %}</a>
           </li>
+        {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link me-2 fs-5" href="#">{% trans "Login" %}</a>
+            <a class="nav-link me-2 fs-5" href="#">{% trans "Statuses" %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-5" href="#">{% trans "Tags" %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link me-2 fs-5" href="#">{% trans "Tasks" %}</a>
+          </li>
+          <li class="nav-item">
+              <form action="{% url 'logout-page' %}" method="post">
+                  {% csrf_token %}
+                  <input class="nav-link fs-5" type="submit" value="{% trans 'Logout' %}">
+              </form>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link me-2 fs-5" href="{% url 'login-page' %}">{% trans "Login" %}</a>
           </li>
           <li class="nav-item">
             <a class="nav-link fs-5" href="{% url 'register-user-page' %}">{% trans "Registration" %}</a>
           </li>
+        {% endif %}
         </ul>
       </div>
     </div>

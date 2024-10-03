@@ -15,7 +15,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.contrib.auth.views import LogoutView
+from django.urls import path, include, reverse_lazy
 
 from task_manager import views
 
@@ -23,8 +24,20 @@ from task_manager import views
 urlpatterns = [
     # Main page
     path('', views.HomeView.as_view(), name="home-page"),
+
     # Users page
     path('users/', include('task_manager.users.urls')),
+
+    # Route for user login
+    path('login/',
+         views.LoginUserView.as_view(),
+         name='login-page'),
+
+    # Route for user logout
+    # Upon successful exit, you are redirected to the main page
+    path('logout/',
+         LogoutView.as_view(next_page="home-page"),
+         name='logout-page'),
 
     path('admin/', admin.site.urls),
 ]

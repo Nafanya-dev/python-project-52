@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="row">
+  <div class="col-9 col-sm-7 col-md-5 mx-auto mb-3">
+    <div class="p-3 shadow">
+      <h1 class="mb-3">{% trans "Login" %}</h1>
+      <form method="post">
+        {% csrf_token %}
+        <div class="error text-danger">{{ form.non_field_errors }}</div>
+        {% for f in form %}
+        <div class="mb-2">
+          <div class="form-floating">
+            <input type="{{ f.field.widget.input_type }}" name="{{ f.name }}" id="{{ f.id_for_label }}"
+               class="form-control" value="{{ f.value|default_if_none:'' }}" placeholder="{{ f.label }}"
+               {% if f.name == 'username' %} autofocus {% endif %} required >
+            <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+          </div>
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-success mt-2" >{% trans "Log in" %}</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -19,12 +19,14 @@ class UserListView(ListView):
 class RegisterUserView(CreateView):
     """
     Handles requests to ('/users/create/')
+
     Method GET Returns the HTML code of the registration page.
+
     Method POST Creates a new user and redirects to the login page ('/login/')
     """
     form_class = RegisterUserForm
     template_name = 'users/register_user.html'
-    success_url = reverse_lazy('users-list-page')
+    success_url = reverse_lazy('login-page')
 
 
 class UpdateUserView(UpdateView):
