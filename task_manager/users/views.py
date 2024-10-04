@@ -3,12 +3,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-
 from django.utils.translation import gettext_lazy as _
 
 from django.contrib.auth.models import User
-
 from task_manager.users.forms import RegisterUserForm
+
+CHANGE_USER_ERROR_MESSAGE = _("You do not have permission"
+                              "to change another user.")
 
 
 class UserListView(ListView):
@@ -26,7 +27,6 @@ class RegisterUserView(CreateView):
     Handles requests to ('/users/create/')
 
     Method GET Returns the HTML code of the registration page.
-
     Method POST Creates a new user and redirects to the login page ('/login/')
     """
     form_class = RegisterUserForm
@@ -40,7 +40,7 @@ class UpdateUserView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     If there is permission:
     Method GET Returns the HTML code of form with user data for editing
-    Method POST Updates user data adn redirects to the users list page
+    Method POST Updates user data and redirects to the users list page
 
     If there is no permission:
     redirects to the users list page.
@@ -63,11 +63,22 @@ class UpdateUserView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         if not self.request.user.is_authenticated:
             return redirect(self.get_login_url())
         else:
-            messages.error(self.request, _("You do not have permission to change another user."))
+            messages.error(self.request, CHANGE_USER_ERROR_MESSAGE)
             return redirect('users-list-page')
 
 
 class DeleteUserView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    """
+    Handles requests to ('/users/<pk>/delete/').
+
+    If there is permission:
+    Method GET Returns the HTML code of the user deletion confirmation page
+    Method POST delete user and redirects to the users list page
+
+    If there is no permission:
+    redirects to the users list page.
+    show a message about no permission
+    """
     model = User
     template_name = 'users/delete_user.html'
     context_object_name = 'user'
@@ -82,5 +93,5 @@ class DeleteUserView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if not self.request.user.is_authenticated:
             return redirect(self.get_login_url())
         else:
-            messages.error(self.request, _("You do not have permission to change another user."))
+            messages.error(self.request, CHANGE_USER_ERROR_MESSAGE)
             return redirect('users-list-page')

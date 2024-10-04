@@ -21,7 +21,6 @@ class LoginUserView(LoginView):
     Handles requests to ('/login/').
 
     Method GET Returns the HTML code of the login page.
-
     Method POST authenticates the user
     Upon successful authentication, redirects to the main page ('/')
     """
