@@ -1,25 +1,32 @@
 from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
 from django.utils.translation import gettext_lazy as _
 
 
 class RegisterUserForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30,
-                                 required=True,
-                                 label=_("First name")),
+    first_name = forms.CharField(label=_("First name"),
+                                 max_length=150,
+                                 required=True,),
 
-    last_name = forms.CharField(max_length=30,
-                                required=True,
-                                label=_("Last name")),
+    last_name = forms.CharField(label=_("Last name"),
+                                max_length=150,
+                                required=True,),
 
-    username = forms.CharField(max_length=150,
+    username = forms.CharField(label=_("Username"),
+                               max_length=150,
                                required=True,
-                               label=_("Username"),
                                help_text=_("""Required field. No more than
                                            150 characters. Only letters,
                                            numbers and symbols @/./+/-/_."""))
+
+    password1 = forms.CharField(label=_("Password"),
+                                required=True,
+                                widget=forms.PasswordInput(
+                                attrs={'autocomplete': 'new-password'}),
+                                help_text=_("""Your password must contain
+                                            at least 3 characters."""))
 
     password2 = forms.CharField(label=_("Password confirmation"),
                                 required=True,
@@ -29,7 +36,7 @@ class RegisterUserForm(UserCreationForm):
                                             password again."""))
 
     class Meta:
-        model = User
+        model = get_user_model()
         fields = (
             'first_name',
             'last_name',
@@ -37,10 +44,6 @@ class RegisterUserForm(UserCreationForm):
             'password1',
             'password2',
         )
-
-        labels = {
-            'password1': _("Password"),
-        }
 
     def __init__(self, *args, **kwargs):
         self.instance = kwargs.get('instance', None)
@@ -51,7 +54,7 @@ class RegisterUserForm(UserCreationForm):
         if self.instance and self.instance.username == username:
             return username
 
-        if User.objects.filter(username=username).exists():
+        if get_user_model().objects.filter(username=username).exists():
             raise forms.ValidationError(
                   _("A user with that username already exists."))
 

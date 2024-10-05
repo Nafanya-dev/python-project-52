@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
@@ -17,7 +18,7 @@ class UserListView(ListView):
     Handles requests to ('/users/')
     Method GET Returns the HTML code of the users list page.
     """
-    model = User
+    model = get_user_model()
     template_name = 'users/user_list.html'
     context_object_name = 'users'
 
@@ -79,7 +80,7 @@ class DeleteUserView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     redirects to the users list page.
     show a message about no permission
     """
-    model = User
+    model = get_user_model()
     template_name = 'users/delete_user.html'
     context_object_name = 'user'
     success_url = reverse_lazy('users-list-page')
