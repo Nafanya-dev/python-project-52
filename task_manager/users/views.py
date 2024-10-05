@@ -1,21 +1,26 @@
-from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.utils.translation import gettext_lazy as _
 
-from django.contrib.auth.models import User
 from task_manager.users.forms import RegisterUserForm
+from task_manager.mixins import AuthorizationRequiredMixin, UserPermissionMixin
 
-CHANGE_USER_ERROR_MESSAGE = _("You do not have permission"
-                              "to change another user.")
+
+PERMISSION_MESSAGE = _("""You do not have permission
+                       to change another user.""")
+
+AUTHORIZATION_MESSAGE = _("You are not authorized! Please log in.")
+
+REGISTER_USER_SUCCESS_MESSAGE = _("User successfully registered")
+UPDATE_USER_SUCCESS_MESSAGE = _("User successfully changed")
+DELETE_USER_SUCCESS_MESSAGE = _("User deleted successfully")
 
 
 class UserListView(ListView):
     """
-    Handles requests to ('/users/')
+    URL ('/users/')
     Method GET Returns the HTML code of the users list page.
     """
     model = get_user_model()
@@ -23,9 +28,9 @@ class UserListView(ListView):
     context_object_name = 'users'
 
 
-class RegisterUserView(CreateView):
+class RegisterUserView(SuccessMessageMixin, CreateView):
     """
-    Handles requests to ('/users/create/')
+    URL ('/users/create/')
 
     Method GET Returns the HTML code of the registration page.
     Method POST Creates a new user and redirects to the login page ('/login/')
@@ -34,51 +39,35 @@ class RegisterUserView(CreateView):
     template_name = 'users/register_user.html'
     success_url = reverse_lazy('login-page')
 
+    success_message = REGISTER_USER_SUCCESS_MESSAGE
 
-class UpdateUserView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+
+class UpdateUserView(AuthorizationRequiredMixin, UserPermissionMixin,
+                     SuccessMessageMixin, UpdateView):
     """
-    Handles requests to ('/users/<pk>/update/').
+    URL ('/users/<pk>/update/').
 
-    If there is permission:
     Method GET Returns the HTML code of form with user data for editing
     Method POST Updates user data and redirects to the users list page
-
-    If there is no permission:
-    redirects to the users list page.
-    show a message about no permission
     """
+    model = get_user_model()
     form_class = RegisterUserForm
     template_name = 'users/update_user.html'
     success_url = reverse_lazy('users-list-page')
     login_url = reverse_lazy('login-page')
 
-    def get_object(self, queryset=None):
-        user_id = self.kwargs.get('pk')
-        return get_object_or_404(User, pk=user_id)
-
-    def test_func(self):
-        user_to_update = self.get_object()
-        return self.request.user == user_to_update
-
-    def handle_no_permission(self):
-        if not self.request.user.is_authenticated:
-            return redirect(self.get_login_url())
-        else:
-            messages.error(self.request, CHANGE_USER_ERROR_MESSAGE)
-            return redirect('users-list-page')
+    authorization_message = AUTHORIZATION_MESSAGE
+    permission_message = PERMISSION_MESSAGE
+    success_message = UPDATE_USER_SUCCESS_MESSAGE
 
 
-class DeleteUserView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class DeleteUserView(AuthorizationRequiredMixin, UserPermissionMixin,
+                     SuccessMessageMixin, DeleteView):
     """
-    Handles requests to ('/users/<pk>/delete/').
+    URL ('/users/<pk>/delete/').
 
-    If there is permission:
     Method GET Returns the HTML code of the user deletion confirmation page
     Method POST delete user and redirects to the users list page
-
-    If there is no permission:
-    redirects to the users list page.
-    show a message about no permission
     """
     model = get_user_model()
     template_name = 'users/delete_user.html'
@@ -86,13 +75,6 @@ class DeleteUserView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     success_url = reverse_lazy('users-list-page')
     login_url = reverse_lazy('login-page')
 
-    def test_func(self):
-        user_to_delete = self.get_object()
-        return self.request.user == user_to_delete
-
-    def handle_no_permission(self):
-        if not self.request.user.is_authenticated:
-            return redirect(self.get_login_url())
-        else:
-            messages.error(self.request, CHANGE_USER_ERROR_MESSAGE)
-            return redirect('users-list-page')
+    authorization_message = AUTHORIZATION_MESSAGE
+    permission_message = PERMISSION_MESSAGE
+    success_message = DELETE_USER_SUCCESS_MESSAGE

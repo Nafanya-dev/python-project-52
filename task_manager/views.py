@@ -2,30 +2,34 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
+from django.contrib.messages.views import SuccessMessageMixin
+from django.utils.translation import gettext_lazy as _
 
 from django.contrib.auth.forms import AuthenticationForm
 
 
+LOGIN_SUCCESS_MESSAGE = _("You are logged in")
+
+
 class HomeView(View):
     """
-    Handles requests to ('/').
-
-    Method GET Returns the HTML code of the main page.
+    URL ('/')
     """
     def get(self, request, *args, **kwargs):
         return render(request, 'index.html')
 
 
-class LoginUserView(LoginView):
+class LoginUserView(SuccessMessageMixin, LoginView):
     """
-    Handles requests to ('/login/').
+    URL ('/login/')
 
-    Method GET Returns the HTML code of the login page.
-    Method POST authenticates the user
-    Upon successful authentication, redirects to the main page ('/')
+    Method GET Returns the HTML code of the login page
+    Method POST authenticates the user and redirects to the main page ('/')
     """
     form_class = AuthenticationForm
     template_name = 'login.html'
+
+    success_message = LOGIN_SUCCESS_MESSAGE
 
     def get_success_url(self):
         return reverse_lazy("home-page")
