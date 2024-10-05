@@ -34,9 +34,8 @@ urlpatterns = [
          name='login-page'),
 
     # Route for user logout
-    # Upon successful exit, you are redirected to the main page
     path('logout/',
-         LogoutView.as_view(next_page="home-page"),
+         views.LogoutUserView.as_view(),
          name='logout-page'),
 
     path('admin/', admin.site.urls),

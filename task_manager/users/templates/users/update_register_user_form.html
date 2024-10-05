@@ -6,7 +6,7 @@
 <div class="row">
   <div class="col-11 col-sm-10 col-md-8 mx-auto mb-3">
     <div class="p-3 shadow">
-      <h1>{% trans "Registration" %}</h1>
+      <h1>{{ title }}</h1>
       <form method="post">
         {% csrf_token %}
         {% for f in form %}
@@ -27,7 +27,7 @@
             {% endif %}
         </div>
         {% endfor %}
-        <button type="submit" class="btn btn-outline-success mt-2">{% trans "Sign up" %}</button>
+        <button type="submit" class="btn btn-outline-success mt-2">{{ button_text }}</button>
       </form>
     </div>
   </div>

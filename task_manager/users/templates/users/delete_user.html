@@ -8,8 +8,8 @@
     <div class="p-3 shadow">
       <h1>{% trans "Delete user" %}</h1>
       <form method="post">
-        <p>{% trans "Are you sure you want to delete" %} {{ user.first_name }} {{ user.last_name }}?</p>
         {% csrf_token %}
+        <p>{% trans "Are you sure you want to delete" %} {{ user.first_name }} {{ user.last_name }}?</p>
         <input type="submit" class="btn btn-danger mt-2" value='{% trans "Yes, Delete" %}'>
       </form>
     </div>

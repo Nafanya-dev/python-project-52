@@ -36,8 +36,12 @@ class RegisterUserView(SuccessMessageMixin, CreateView):
     Method POST Creates a new user and redirects to the login page ('/login/')
     """
     form_class = RegisterUserForm
-    template_name = 'users/register_user.html'
+    template_name = 'users/update_register_user_form.html'
     success_url = reverse_lazy('login-page')
+    extra_context = {
+        'title': _("Registration"),
+        'button_text': _('Sign up')
+    }
 
     success_message = REGISTER_USER_SUCCESS_MESSAGE
 
@@ -52,9 +56,13 @@ class UpdateUserView(AuthorizationRequiredMixin, UserPermissionMixin,
     """
     model = get_user_model()
     form_class = RegisterUserForm
-    template_name = 'users/update_user.html'
+    template_name = 'users/update_register_user_form.html'
     success_url = reverse_lazy('users-list-page')
     login_url = reverse_lazy('login-page')
+    extra_context = {
+        'title': _("Edit user"),
+        'button_text': _('Edit')
+    }
 
     authorization_message = AUTHORIZATION_MESSAGE
     permission_message = PERMISSION_MESSAGE

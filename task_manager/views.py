@@ -1,4 +1,5 @@
-from django.contrib.auth.views import LoginView
+from django.contrib import messages
+from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
@@ -21,15 +22,26 @@ class HomeView(View):
 
 class LoginUserView(SuccessMessageMixin, LoginView):
     """
-    URL ('/login/')
+    URL ('login/')
 
     Method GET Returns the HTML code of the login page
     Method POST authenticates the user and redirects to the main page ('/')
     """
     form_class = AuthenticationForm
     template_name = 'login.html'
+    next_page = "home-page"
 
     success_message = LOGIN_SUCCESS_MESSAGE
 
-    def get_success_url(self):
-        return reverse_lazy("home-page")
+
+class LogoutUserView(LogoutView):
+    """
+    URL ('logout/')
+
+    Method POST logs the user out and redirects to main page ('/')
+    """
+    next_page = 'home-page'
+
+    def post(self, request, *args, **kwargs):
+        messages.info(request, "You have been successfully logged out.")
+        return super().post(request, *args, **kwargs)
