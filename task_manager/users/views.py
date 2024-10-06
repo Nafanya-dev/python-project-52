@@ -2,20 +2,12 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from django.utils.translation import gettext_lazy as _
 
 from task_manager.users.forms import RegisterUserForm
 from task_manager.mixins import AuthorizationRequiredMixin, UserPermissionMixin
 
-
-PERMISSION_MESSAGE = _("""You do not have permission
-                       to change another user.""")
-
-AUTHORIZATION_MESSAGE = _("You are not authorized! Please log in.")
-
-REGISTER_USER_SUCCESS_MESSAGE = _("User successfully registered")
-UPDATE_USER_SUCCESS_MESSAGE = _("User successfully changed")
-DELETE_USER_SUCCESS_MESSAGE = _("User deleted successfully")
+# module with texts for buttons, flash messages, titles
+from task_manager import texts
 
 
 class UserListView(ListView):
@@ -39,11 +31,11 @@ class RegisterUserView(SuccessMessageMixin, CreateView):
     template_name = 'users/update_register_user_form.html'
     success_url = reverse_lazy('login-page')
     extra_context = {
-        'title': _("Registration"),
-        'button_text': _('Sign up')
+        'title': texts.SIGN_UP_TITLE_TEXT,
+        'button_text': texts.SIGN_UP_BUTTON_TEXT
     }
 
-    success_message = REGISTER_USER_SUCCESS_MESSAGE
+    success_message = texts.REGISTER_USER_SUCCESS_MESSAGE
 
 
 class UpdateUserView(AuthorizationRequiredMixin, UserPermissionMixin,
@@ -60,13 +52,13 @@ class UpdateUserView(AuthorizationRequiredMixin, UserPermissionMixin,
     success_url = reverse_lazy('users-list-page')
     login_url = reverse_lazy('login-page')
     extra_context = {
-        'title': _("Edit user"),
-        'button_text': _('Edit')
+        'title': texts.UPDATE_TITLE_TEXT,
+        'button_text': texts.EDIT_BUTTON_TEXT
     }
 
-    authorization_message = AUTHORIZATION_MESSAGE
-    permission_message = PERMISSION_MESSAGE
-    success_message = UPDATE_USER_SUCCESS_MESSAGE
+    authorization_message = texts.AUTHORIZATION_MESSAGE
+    permission_message = texts.PERMISSION_MESSAGE
+    success_message = texts.UPDATE_USER_SUCCESS_MESSAGE
 
 
 class DeleteUserView(AuthorizationRequiredMixin, UserPermissionMixin,
@@ -82,7 +74,11 @@ class DeleteUserView(AuthorizationRequiredMixin, UserPermissionMixin,
     context_object_name = 'user'
     success_url = reverse_lazy('users-list-page')
     login_url = reverse_lazy('login-page')
+    extra_context = {
+        'title': texts.DELETE_TITLE_TEXT,
+        'button_text': texts.DELETE_BUTTON_TEXT
+    }
 
-    authorization_message = AUTHORIZATION_MESSAGE
-    permission_message = PERMISSION_MESSAGE
-    success_message = DELETE_USER_SUCCESS_MESSAGE
+    authorization_message = texts.AUTHORIZATION_MESSAGE
+    permission_message = texts.PERMISSION_MESSAGE
+    success_message = texts.DELETE_USER_SUCCESS_MESSAGE

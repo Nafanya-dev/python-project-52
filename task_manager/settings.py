@@ -11,12 +11,13 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-
-from django.conf.global_settings import AUTH_USER_MODEL
 from dotenv import load_dotenv
+from django.contrib.messages import constants as messages
 import dj_database_url
-from django.utils.translation import gettext_lazy as _
 import os
+
+# module with texts for buttons, flash messages, titles
+from task_manager import texts
 
 
 load_dotenv()
@@ -121,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
         'OPTIONS': {'min_length': 3},
-        'message': _("Your password must contain at least 3 characters."),
+        'message': texts.PASSWORD_VALIDATOR_MESSAGE,
     },
     #{
     #    'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -169,3 +170,11 @@ if not DEBUG:
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-secondary',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}

@@ -1,15 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render
-from django.urls import reverse_lazy
 from django.views import View
 from django.contrib.messages.views import SuccessMessageMixin
-from django.utils.translation import gettext_lazy as _
-
 from django.contrib.auth.forms import AuthenticationForm
 
-
-LOGIN_SUCCESS_MESSAGE = _("You are logged in")
+# module with texts for buttons, flash messages, titles
+from task_manager import texts
 
 
 class HomeView(View):
@@ -31,7 +28,7 @@ class LoginUserView(SuccessMessageMixin, LoginView):
     template_name = 'login.html'
     next_page = "home-page"
 
-    success_message = LOGIN_SUCCESS_MESSAGE
+    success_message = texts.LOGIN_SUCCESS_MESSAGE
 
 
 class LogoutUserView(LogoutView):
@@ -43,5 +40,5 @@ class LogoutUserView(LogoutView):
     next_page = 'home-page'
 
     def post(self, request, *args, **kwargs):
-        messages.info(request, "You have been successfully logged out.")
+        messages.info(request, texts.LOGOUT_INFO_MESSAGE)
         return super().post(request, *args, **kwargs)

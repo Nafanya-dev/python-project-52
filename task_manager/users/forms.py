@@ -2,38 +2,35 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
-from django.utils.translation import gettext_lazy as _
+# module with texts for buttons, flash messages, titles
+from task_manager import texts
 
 
 class RegisterUserForm(UserCreationForm):
-    first_name = forms.CharField(label=_("First name"),
+    first_name = forms.CharField(label=texts.FIRST_NAME_LABEL_USER_FORM,
                                  max_length=150,
                                  required=True,),
 
-    last_name = forms.CharField(label=_("Last name"),
+    last_name = forms.CharField(label=texts.LAST_NAME_LABEL_USER_FORM,
                                 max_length=150,
                                 required=True,),
 
-    username = forms.CharField(label=_("Username"),
+    username = forms.CharField(label=texts.USERNAME_LABEL_USER_FORM,
                                max_length=150,
                                required=True,
-                               help_text=_("""Required field. No more than
-                                           150 characters. Only letters,
-                                           numbers and symbols @/./+/-/_."""))
+                               help_text=texts.USERNAME_HELP_TEXT_USER_FORM)
 
-    password1 = forms.CharField(label=_("Password"),
+    password1 = forms.CharField(label=texts.PASSWORD1_LABEL_USER_FORM,
                                 required=True,
                                 widget=forms.PasswordInput(
                                 attrs={'autocomplete': 'new-password'}),
-                                help_text=_("""Your password must contain
-                                            at least 3 characters."""))
+                                help_text=texts.PASSWORD1_HELP_TEXT_USER_FORM)
 
-    password2 = forms.CharField(label=_("Password confirmation"),
+    password2 = forms.CharField(label=texts.PASSWORD2_LABEL_USER_FORM,
                                 required=True,
                                 widget=forms.PasswordInput(
                                 attrs={'autocomplete': 'new-password'}),
-                                help_text=_("""To confirm, please enter your
-                                            password again."""))
+                                help_text=texts.PASSWORD2_HELP_TEXT_USER_FORM)
 
     class Meta:
         model = get_user_model()
@@ -56,6 +53,6 @@ class RegisterUserForm(UserCreationForm):
 
         if get_user_model().objects.filter(username=username).exists():
             raise forms.ValidationError(
-                  _("A user with that username already exists."))
+                  texts.USERNAME_VALIDATION_ERROR_MESSAGE_USER_FORM)
 
         return username
