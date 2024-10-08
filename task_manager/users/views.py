@@ -18,6 +18,9 @@ class UserListView(ListView):
     model = get_user_model()
     template_name = 'users/user_list.html'
     context_object_name = 'users'
+    extra_context = {
+        'title': texts.USERS_LIST_TITLE_TEXT
+    }
 
 
 class RegisterUserView(SuccessMessageMixin, CreateView):

@@ -24,6 +24,7 @@ DELETE_BUTTON_TEXT = _("Yes, Delete")
 
 
 # TITLES
+USERS_LIST_TITLE_TEXT = _('Users')
 SIGN_UP_TITLE_TEXT = _("Registration")
 UPDATE_TITLE_TEXT = _("Edit user")
 DELETE_TITLE_TEXT = _("Delete user")
@@ -53,8 +54,16 @@ USERNAME_VALIDATION_ERROR_MESSAGE_USER_FORM = _("A user with that username alrea
 
 
 # --- STATUSES ---
+# -- TASK_MANAGER.STATUSES.VIEWS.PY --
 
-# -- STATUSES FORMS.PY --
+# BUTTONS
+CREATE_STATUS_BUTTON_TEXT = _('Create Status')
 
-# LABEL
+# TITLES
+STATUSES_LIST_TITLE_TEXT = _('Statuses')
+
+
+# -- TASK_MANAGER.STATUSES.FORMS.PY --
+
+# LABELS
 NAME_LABEL_STATUS_FORM = _('Name')

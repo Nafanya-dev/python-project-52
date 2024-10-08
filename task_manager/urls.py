@@ -24,8 +24,11 @@ urlpatterns = [
     # Main page
     path('', views.HomeView.as_view(), name="home-page"),
 
-    # Users page
+    # Users list page
     path('users/', include('task_manager.users.urls')),
+
+    # Statuses list page
+    path('statuses/', include('task_manager.statuses.urls')),
 
     # Route for user login
     path('login/',

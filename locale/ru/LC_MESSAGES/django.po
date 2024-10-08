@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-06 15:42+0300\n"
+"POT-Creation-Date: 2024-10-08 16:24+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,17 +20,37 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
+#: task_manager/statuses/templates/statuses/statuses_list.html:21
+#: task_manager/texts.py:69
+msgid "Name"
+msgstr "Имя"
+
+#: task_manager/statuses/templates/statuses/statuses_list.html:22
+#: task_manager/users/templates/users/user_list.html:22
+msgid "Creation date"
+msgstr "Дата создания"
+
+#: task_manager/statuses/templates/statuses/statuses_list.html:31
+#: task_manager/texts.py:22
+#: task_manager/users/templates/users/user_list.html:32
+msgid "Edit"
+msgstr "Изменить"
+
+#: task_manager/statuses/templates/statuses/statuses_list.html:31
+#: task_manager/users/templates/users/user_list.html:32
+msgid "Delete"
+msgstr "Удалить"
+
 #: task_manager/templates/base.html:12
 #: task_manager/templates/header_menu.html:6
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: task_manager/templates/header_menu.html:13
-#: task_manager/users/templates/users/user_list.html:15
+#: task_manager/templates/header_menu.html:13 task_manager/texts.py:27
 msgid "Users"
 msgstr "Пользователи"
 
-#: task_manager/templates/header_menu.html:17
+#: task_manager/templates/header_menu.html:17 task_manager/texts.py:63
 msgid "Statuses"
 msgstr "Статусы"
 
@@ -51,7 +71,7 @@ msgstr "Выход"
 msgid "Login"
 msgstr "Вход"
 
-#: task_manager/templates/header_menu.html:36 task_manager/texts.py:27
+#: task_manager/templates/header_menu.html:36 task_manager/texts.py:28
 msgid "Registration"
 msgstr "Регистрация"
 
@@ -91,48 +111,43 @@ msgstr "Вы разлогинены"
 msgid "Sign up"
 msgstr "Зарегистрировать"
 
-#: task_manager/texts.py:22
-#: task_manager/users/templates/users/user_list.html:32
-msgid "Edit"
-msgstr "Изменить"
-
 #: task_manager/texts.py:23
 msgid "Yes, Delete"
 msgstr "Да, Удалить"
 
-#: task_manager/texts.py:28
+#: task_manager/texts.py:29
 msgid "Edit user"
 msgstr "Изменение пользователя"
 
-#: task_manager/texts.py:29
+#: task_manager/texts.py:30
 msgid "Delete user"
 msgstr "Удаление пользователя"
 
-#: task_manager/texts.py:34 task_manager/texts.py:48
+#: task_manager/texts.py:35 task_manager/texts.py:49
 msgid "Your password must contain at least 3 characters."
 msgstr "Ваш пароль должен содержать как минимум 3 символа."
 
-#: task_manager/texts.py:40
+#: task_manager/texts.py:41
 msgid "First name"
 msgstr "Имя"
 
-#: task_manager/texts.py:41
+#: task_manager/texts.py:42
 msgid "Last name"
 msgstr "Фамилия"
 
-#: task_manager/texts.py:42
+#: task_manager/texts.py:43
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: task_manager/texts.py:43
+#: task_manager/texts.py:44
 msgid "Password"
 msgstr "Пароль"
 
-#: task_manager/texts.py:44
+#: task_manager/texts.py:45
 msgid "Password confirmation"
 msgstr "Подтверждение пароля"
 
-#: task_manager/texts.py:47
+#: task_manager/texts.py:48
 msgid ""
 "Required field. No more than 150 characters. Only letters, numbers and "
 "symbols @/./+/-/_."
@@ -140,13 +155,17 @@ msgstr ""
 "Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./"
 "+/-/_."
 
-#: task_manager/texts.py:49
+#: task_manager/texts.py:50
 msgid "To confirm, please enter your password again."
 msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
 
-#: task_manager/texts.py:52
+#: task_manager/texts.py:53
 msgid "A user with that username already exists."
 msgstr "Пользователь с таким именем уже существует."
+
+#: task_manager/texts.py:60
+msgid "Create Status"
+msgstr "Создать Статус"
 
 #: task_manager/users/templates/users/delete_user.html:12
 msgid "Are you sure you want to delete"
@@ -159,11 +178,3 @@ msgstr "Имя пользователя"
 #: task_manager/users/templates/users/user_list.html:21
 msgid "Full name"
 msgstr "Полное имя"
-
-#: task_manager/users/templates/users/user_list.html:22
-msgid "Creation date"
-msgstr "Дата создания"
-
-#: task_manager/users/templates/users/user_list.html:32
-msgid "Delete"
-msgstr "Удалить"
