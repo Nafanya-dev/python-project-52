@@ -34,7 +34,7 @@ DELETE_TITLE_TEXT = _("Delete user")
 PASSWORD_VALIDATOR_MESSAGE = _("Your password must contain at least 3 characters.")
 
 
-# --- USERS FORMS.PY ---
+# -- USERS FORMS.PY --
 
 # LABELS
 FIRST_NAME_LABEL_USER_FORM = _("First name")
@@ -50,3 +50,11 @@ PASSWORD2_HELP_TEXT_USER_FORM =_("To confirm, please enter your password again."
 
 # MESSAGES
 USERNAME_VALIDATION_ERROR_MESSAGE_USER_FORM = _("A user with that username already exists.")
+
+
+# --- STATUSES ---
+
+# -- STATUSES FORMS.PY --
+
+# LABEL
+NAME_LABEL_STATUS_FORM = _('Name')
