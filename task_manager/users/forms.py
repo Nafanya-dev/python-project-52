@@ -23,13 +23,13 @@ class RegisterUserForm(UserCreationForm):
     password1 = forms.CharField(label=texts.PASSWORD1_LABEL_USER_FORM,
                                 required=True,
                                 widget=forms.PasswordInput(
-                                attrs={'autocomplete': 'new-password'}),
+                                    attrs={'autocomplete': 'new-password'}),
                                 help_text=texts.PASSWORD1_HELP_TEXT_USER_FORM)
 
     password2 = forms.CharField(label=texts.PASSWORD2_LABEL_USER_FORM,
                                 required=True,
                                 widget=forms.PasswordInput(
-                                attrs={'autocomplete': 'new-password'}),
+                                    attrs={'autocomplete': 'new-password'}),
                                 help_text=texts.PASSWORD2_HELP_TEXT_USER_FORM)
 
     class Meta:

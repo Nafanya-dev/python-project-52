@@ -3,7 +3,9 @@ from task_manager.fixtures.user_test_case import (UserRegisterTestCase,
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
 
+
 User = get_user_model()
+
 
 class RegisterUserViewTest(UserRegisterTestCase):
     def test_user_creation(self):

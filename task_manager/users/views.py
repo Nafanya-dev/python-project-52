@@ -13,7 +13,7 @@ from task_manager import texts
 class UserListView(ListView):
     """
     URL ('/users/')
-    Method GET Returns the HTML code of the users list page.
+    Method GET Returns the HTML code of the user list page.
     """
     model = get_user_model()
     template_name = 'users/user_list.html'
@@ -47,7 +47,7 @@ class UpdateUserView(AuthorizationRequiredMixin, UserPermissionMixin,
     URL ('/users/<pk>/update/').
 
     Method GET Returns the HTML code of form with user data for editing
-    Method POST Updates user data and redirects to the users list page
+    Method POST Updates user data and redirects to the user list page
     """
     model = get_user_model()
     form_class = RegisterUserForm
@@ -55,7 +55,7 @@ class UpdateUserView(AuthorizationRequiredMixin, UserPermissionMixin,
     success_url = reverse_lazy('users-list-page')
     login_url = reverse_lazy('login-page')
     extra_context = {
-        'title': texts.UPDATE_TITLE_TEXT,
+        'title': texts.UPDATE_USER_TITLE_TEXT,
         'button_text': texts.EDIT_BUTTON_TEXT
     }
 
@@ -70,7 +70,7 @@ class DeleteUserView(AuthorizationRequiredMixin, UserPermissionMixin,
     URL ('/users/<pk>/delete/').
 
     Method GET Returns the HTML code of the user deletion confirmation page
-    Method POST delete user and redirects to the users list page
+    Method POST delete user and redirects to the user list page
     """
     model = get_user_model()
     template_name = 'users/delete_user.html'
@@ -78,7 +78,7 @@ class DeleteUserView(AuthorizationRequiredMixin, UserPermissionMixin,
     success_url = reverse_lazy('users-list-page')
     login_url = reverse_lazy('login-page')
     extra_context = {
-        'title': texts.DELETE_TITLE_TEXT,
+        'title': texts.DELETE_USER_TITLE_TEXT,
         'button_text': texts.DELETE_BUTTON_TEXT
     }
 

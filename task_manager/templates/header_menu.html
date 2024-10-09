@@ -14,7 +14,7 @@
         </li>
       {% if request.user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link me-2 fs-5" href="{% url 'statuses-list-page' %}">{% trans "Statuses" %}</a>
+          <a class="nav-link me-2 fs-5" href="{% url 'status-list-page' %}">{% trans "Statuses" %}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link fs-5" href="#">{% trans "Tags" %}</a>

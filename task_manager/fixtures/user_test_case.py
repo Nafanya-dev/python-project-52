@@ -2,7 +2,9 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse_lazy
 
+
 User = get_user_model()
+
 
 class UserRegisterTestCase(TestCase):
     def setUp(self):
@@ -45,5 +47,8 @@ class UserUpdateDeleteTestCase(TestCase):
 
         self.user = User.objects.create_user(self.create_data)
 
-        self.update_url = reverse_lazy('update-user-page', kwargs={'pk': self.user.pk})  # Замените на ваш URL
-        self.delete_url = reverse_lazy('delete-user-page', kwargs={'pk': self.user.pk})
+        self.update_url = reverse_lazy('update-user-page',
+                                       kwargs={'pk': self.user.pk})
+        # Замените на ваш URL
+        self.delete_url = reverse_lazy('delete-user-page',
+                                       kwargs={'pk': self.user.pk})
