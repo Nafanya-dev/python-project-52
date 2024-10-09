@@ -13,7 +13,7 @@
             {% endfor %}
 
             <h1>{{ title }}</h1>
-            <a href="#" class="btn btn-success mt-2 mb-4">{{ button_text }}</a>
+            <a href="{% url 'create-status-page' %}" class="btn btn-success mt-2 mb-4">{{ button_text }}</a>
             <table class="table table-light table-responsive table-striped shadow">
                 <thead class="table-secondary">
                     <tr>
@@ -27,8 +27,8 @@
                         <tr>
                             <td>{{ status.id }}</td>
                             <td>{{ status.name }}</td>
-                            <td>{{ status.date_joined|date:"d.m.Y H:i" }}</td>
-                            <td><a class="mb-2 btn btn-sm btn-success" href="{% url 'update-user-page' user.id %}">{% trans "Edit" %}</a><br><a class="btn btn-sm btn-outline-danger" href="{% url 'delete-user-page' user.id %}">{% trans "Delete" %}</a></td>
+                            <td>{{ status.created_at|date:"d.m.Y H:i" }}</td>
+                            <td><a class="mb-2 btn btn-sm btn-success" href="{% url 'update-status-page' status.id %}">{% trans "Edit" %}</a><br><a class="btn btn-sm btn-outline-danger" href="{% url 'delete-status-page' status.id %}">{% trans "Delete" %}</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
