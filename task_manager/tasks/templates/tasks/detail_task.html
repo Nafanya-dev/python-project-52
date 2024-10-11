@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+
+{% block content %}
+<div class="row">
+  <div class="col-11 col-sm-10 col-md-8 mx-auto mb-3">
+    <h1>{{ title }}</h1>
+    <div class="shadow card">
+        <div class="card-header bg-secondary text-white">
+            <h2>{{ task.title }}</h2>
+        </div>
+        <div class="card-body">
+            {{ task.description }}
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row p-1">
+                <div class="col">
+                    {% trans 'Author' %}
+                </div>
+                <div class="col">
+                    {{ task.author }}
+                </div>
+            </div>
+            <div class="row p-1">
+                <div class="col">
+                    {% trans 'Executor' %}
+                </div>
+                <div class="col">
+                    {{ task.assignee|default:'' }}
+                </div>
+            </div>
+            <div class="row p-1">
+                <div class="col">
+                    {% trans 'Status' %}
+                </div>
+                <div class="col">
+                    {{ task.status }}
+                </div>
+            </div>
+            <div class="row p-1">
+                <div class="col">
+                    {% trans 'Creation date' %}
+                </div>
+                <div class="col">
+                    {{ task.created_at|date:"d.m.Y H:i" }}
+                </div>
+            </div>
+            <div class="row p-1">
+                <div class="col">
+                    <a class="mb-2 mt-3 btn btn-sm btn-success" href="{% url 'update-task-page' task.id %}">{% trans "Edit" %}</a>
+                    <br>
+                    <a class="mb-2 btn btn-sm btn-outline-danger" href="{% url 'delete-task-page' task.id %}">{% trans "Delete" %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

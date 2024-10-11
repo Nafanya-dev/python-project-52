@@ -1,7 +1,11 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.db.models import ProtectedError
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+
+# module with texts for buttons, flash messages, titles
+from task_manager import texts
 
 
 class AuthorizationRequiredMixin(LoginRequiredMixin):
@@ -10,7 +14,7 @@ class AuthorizationRequiredMixin(LoginRequiredMixin):
     whether the user is authenticated.
     If not, it displays an error message and redirects to the login page
     """
-    authorization_message = None
+    authorization_message = texts.AUTHORIZATION_MESSAGE
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -35,3 +39,27 @@ class UserPermissionMixin(UserPassesTestMixin):
     def handle_no_permission(self):
         messages.error(self.request, self.permission_message)
         return redirect(reverse_lazy('users-list-page'))
+
+
+class AuthorDeletionMixin(UserPassesTestMixin):
+    author_message = None
+    author_url = None
+
+    def test_func(self):
+        return self.request.user == self.get_object().author
+
+    def handle_no_permission(self):
+        messages.error(self.request, self.author_message)
+        return redirect(self.author_url)
+
+
+class DeleteProtectionMixin:
+    protected_message = None
+    protected_url = None
+
+    def post(self, request, *args, **kwargs):
+        try:
+            return super().post(request, *args, **kwargs)
+        except ProtectedError:
+            messages.error(request, self.protected_message)
+            return redirect(self.protected_url)

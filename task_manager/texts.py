@@ -9,7 +9,7 @@ CREATE_BUTTON_TEXT = _('Create')
 
 # MESSAGES
 AUTHORIZATION_MESSAGE = _("You are not authorized! Please log in.")
-
+DELETE_USER_PROTECT_MESSAGE = _('Cannot delete user because it is in use')
 # ----
 
 
@@ -66,6 +66,7 @@ CREATE_STATUS_TEXT = _('Create Status')
 CREATE_STATUS_SUCCESS_MESSAGE = _('Status successfully created')
 UPDATE_STATUS_SUCCESS_MESSAGE = _('Status successfully changed')
 DELETE_STATUS_SUCCESS_MESSAGE = _('Status successfully deleted')
+DELETE_STATUS_PROTECT_MESSAGE = _('Cannot delete status because it is in use')
 
 
 # TITLES
@@ -85,7 +86,16 @@ NAME_LABEL_STATUS_FORM = _('Name')
 # -- TASK_MANAGER.TASKS.VIEWS.PY --
 CREATE_TASK_TEXT = _('Create a task')
 
+# MESSAGES
+CREATE_TASK_SUCCESS_MESSAGE = _('Task created successfully')
+UPDATE_TASK_SUCCESS_MESSAGE = _('Task successfully modified')
+DELETE_TASK_SUCCESS_MESSAGE = _('The task was successfully deleted')
+AUTHOR_TASK_MESSAGE = _('Only its author can delete a task')
+
 # TITLES
 TASKS_LIST_TITLE_TEXT = _('Tasks')
+UPDATE_TASK_TITLE_TEXT = _('Change task')
+DELETE_TASK_TITLE_TEXT = _('Delete task')
+DETAIL_TASK_TITLE_TEXT = _('View a task')
 
 # ----

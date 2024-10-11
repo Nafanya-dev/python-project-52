@@ -1,7 +1,10 @@
 from django.forms import ModelForm
 from django import forms
 from task_manager.tasks.models import TaskModel
+from django.contrib.auth import get_user_model
 
+
+User = get_user_model()
 
 class TaskForm(ModelForm):
     class Meta:

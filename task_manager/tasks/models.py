@@ -10,7 +10,7 @@ class TaskModel(models.Model):
     title = models.CharField(max_length=200, unique=True)
     description = models.TextField()
     status = models.ForeignKey(Status, on_delete=models.PROTECT)
-    author = models.ForeignKey(User, on_delete=models.CASCADE,
+    author = models.ForeignKey(User, on_delete=models.PROTECT,
                                related_name='tasks_created')
 
     assignee = models.ForeignKey(User, on_delete=models.SET_NULL,

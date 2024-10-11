@@ -29,12 +29,12 @@
                     {% for task in tasks %}
                         <tr>
                             <td>{{ task.id }}</td>
-                            <td>{{ task.title }}</td>
+                            <td><a href="{% url 'task-detail-page' task.id %}">{{ task.title }}</a></td>
                             <td>{{ task.status }}</td>
                             <td>{{ task.author }}</td>
                             <td>{{ task.assignee|default:'' }}</td>
                             <td>{{ task.created_at|date:"d.m.Y H:i" }}</td>
-                            <td><a class="mb-2 btn btn-sm btn-success" href="{% url 'update-user-page' user.id %}">{% trans "Edit" %}</a><br><a class="btn btn-sm btn-outline-danger" href="{% url 'delete-user-page' user.id %}">{% trans "Delete" %}</a></td>
+                            <td><a class="mb-2 btn btn-sm btn-success" href="{% url 'update-task-page' task.id %}">{% trans "Edit" %}</a><br><a class="btn btn-sm btn-outline-danger" href="{% url 'delete-task-page' task.id %}">{% trans "Delete" %}</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
