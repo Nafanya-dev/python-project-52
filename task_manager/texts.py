@@ -79,3 +79,13 @@ DELETE_STATUS_TITLE_TEXT = _('Delete status')
 NAME_LABEL_STATUS_FORM = _('Name')
 
 # ----
+
+
+# === TASKS ===
+# -- TASK_MANAGER.TASKS.VIEWS.PY --
+CREATE_TASK_TEXT = _('Create a task')
+
+# TITLES
+TASKS_LIST_TITLE_TEXT = _('Tasks')
+
+# ----

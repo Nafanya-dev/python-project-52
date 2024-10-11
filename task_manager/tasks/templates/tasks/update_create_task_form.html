@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+
+{% block content %}
+<div class="row">
+  <div class="col-11 col-sm-10 col-md-8 mx-auto mb-3">
+    <div class="p-3 shadow">
+      <h1>{{ title }}</h1>
+      <form method="post">
+        {% csrf_token %}
+        <div class="mb-2">
+          {% for f in form %}
+          <div class="form-floating">
+              {{ f }}
+              <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+          </div>
+          <div class="form-text">
+            {{ f.help_text }}
+          </div>
+            {% if f.errors %}
+              <div class="text-danger">
+                {{ f.errors }}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-outline-success mt-2">{{ button_text }}</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

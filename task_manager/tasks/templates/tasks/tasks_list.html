@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+
+            <h1>{{ title }}</h1>
+            <a href="{% url 'create-task-page' %}" class="btn btn-success mt-2 mb-4">{{ button_text }}</a>
+            <table class="table table-light table-responsive table-striped shadow">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>ID</th>
+                        <th>{% trans "Name" %}</th>
+                        <th>{% trans "Status" %}</th>
+                        <th>{% trans "Author" %}</th>
+                        <th>{% trans "Executor" %}</th>
+                        <th colspan="2">{% trans "Creation date" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in tasks %}
+                        <tr>
+                            <td>{{ task.id }}</td>
+                            <td>{{ task.title }}</td>
+                            <td>{{ task.status }}</td>
+                            <td>{{ task.author }}</td>
+                            <td>{{ task.assignee|default:'' }}</td>
+                            <td>{{ task.created_at|date:"d.m.Y H:i" }}</td>
+                            <td><a class="mb-2 btn btn-sm btn-success" href="{% url 'update-user-page' user.id %}">{% trans "Edit" %}</a><br><a class="btn btn-sm btn-outline-danger" href="{% url 'delete-user-page' user.id %}">{% trans "Delete" %}</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

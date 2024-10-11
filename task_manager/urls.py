@@ -30,6 +30,9 @@ urlpatterns = [
     # Status list page
     path('statuses/', include('task_manager.statuses.urls')),
 
+    # Task list page
+    path('tasks/', include('task_manager.tasks.urls')),
+
     # Route for user login
     path('login/',
          views.LoginUserView.as_view(),
