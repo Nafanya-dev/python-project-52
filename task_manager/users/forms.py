@@ -7,30 +7,48 @@ from task_manager import texts
 
 
 class RegisterUserForm(UserCreationForm):
-    first_name = forms.CharField(label=texts.FIRST_NAME_LABEL_USER_FORM,
-                                 max_length=150,
-                                 required=True,),
+    first_name = forms.CharField(
+        label=texts.FIRST_NAME_LABEL_USER_FORM,
+        max_length=150,
+        required=True,
+        widget=forms.TextInput(
+            attrs={'class':'form-control',
+                   'placeholder': texts.FIRST_NAME_LABEL_USER_FORM}))
 
-    last_name = forms.CharField(label=texts.LAST_NAME_LABEL_USER_FORM,
-                                max_length=150,
-                                required=True,),
+    last_name = forms.CharField(
+        label=texts.LAST_NAME_LABEL_USER_FORM,
+        max_length=150,
+        required=True,
+        widget=forms.TextInput(
+            attrs={'class':'form-control mt-2',
+                   'placeholder': texts.LAST_NAME_LABEL_USER_FORM}))
 
-    username = forms.CharField(label=texts.USERNAME_LABEL_USER_FORM,
-                               max_length=150,
-                               required=True,
-                               help_text=texts.USERNAME_HELP_TEXT_USER_FORM)
+    username = forms.CharField(
+        label=texts.USERNAME_LABEL_USER_FORM,
+        max_length=150,
+        required=True,
+        help_text=texts.USERNAME_HELP_TEXT_USER_FORM,
+        widget=forms.TextInput(
+            attrs={'class':'form-control mt-2',
+                   'placeholder': texts.USERNAME_LABEL_USER_FORM}))
 
-    password1 = forms.CharField(label=texts.PASSWORD1_LABEL_USER_FORM,
-                                required=True,
-                                widget=forms.PasswordInput(
-                                    attrs={'autocomplete': 'new-password'}),
-                                help_text=texts.PASSWORD1_HELP_TEXT_USER_FORM)
+    password1 = forms.CharField(
+        label=texts.PASSWORD1_LABEL_USER_FORM,
+        required=True,
+        help_text=texts.PASSWORD1_HELP_TEXT_USER_FORM,
+        widget=forms.PasswordInput(
+            attrs={'autocomplete': 'new-password',
+                   'class': 'form-control mt-2',
+                   'placeholder': texts.PASSWORD1_LABEL_USER_FORM}))
 
-    password2 = forms.CharField(label=texts.PASSWORD2_LABEL_USER_FORM,
-                                required=True,
-                                widget=forms.PasswordInput(
-                                    attrs={'autocomplete': 'new-password'}),
-                                help_text=texts.PASSWORD2_HELP_TEXT_USER_FORM)
+    password2 = forms.CharField(
+        label=texts.PASSWORD2_LABEL_USER_FORM,
+        required=True,
+        help_text=texts.PASSWORD2_HELP_TEXT_USER_FORM,
+        widget=forms.PasswordInput(
+            attrs={'autocomplete': 'new-password',
+                   'class': 'form-control mt-2',
+                   'placeholder': texts.PASSWORD2_LABEL_USER_FORM}))
 
     class Meta:
         model = get_user_model()

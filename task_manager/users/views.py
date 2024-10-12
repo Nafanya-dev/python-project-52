@@ -35,7 +35,7 @@ class RegisterUserView(SuccessMessageMixin, CreateView):
     Method POST Creates a new user and redirects to the login page ('/login/')
     """
     form_class = RegisterUserForm
-    template_name = 'users/update_register_user_form.html'
+    template_name = 'update_create_form.html'
     success_url = reverse_lazy('login-page')
     extra_context = {
         'title': texts.SIGN_UP_TITLE_TEXT,
@@ -55,7 +55,7 @@ class UpdateUserView(AuthorizationRequiredMixin, UserPermissionMixin,
     """
     model = get_user_model()
     form_class = RegisterUserForm
-    template_name = 'users/update_register_user_form.html'
+    template_name = 'update_create_form.html'
     success_url = reverse_lazy('users-list-page')
     extra_context = {
         'title': texts.UPDATE_USER_TITLE_TEXT,
@@ -75,13 +75,13 @@ class DeleteUserView(AuthorizationRequiredMixin, UserPermissionMixin,
     Method POST delete user and redirects to the user list page
     """
     model = get_user_model()
-    template_name = 'users/delete_user.html'
-    context_object_name = 'user'
+    template_name = 'delete_form.html'
+    context_object_name = 'object'
     success_url = reverse_lazy('users-list-page')
     protected_url = reverse_lazy('users-list-page')
     extra_context = {
         'title': texts.DELETE_USER_TITLE_TEXT,
-        'button_text': texts.DELETE_BUTTON_TEXT
+        'button_text': texts.DELETE_BUTTON_TEXT,
     }
 
     permission_message = texts.PERMISSION_MESSAGE

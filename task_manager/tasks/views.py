@@ -12,7 +12,7 @@ from task_manager import texts
 
 class TaskListView(AuthorizationRequiredMixin, ListView):
     model = TaskModel
-    template_name = 'tasks/tasks_list.html'
+    template_name = 'tasks/task_list.html'
     context_object_name = 'tasks'
     extra_context = {
         'title': texts.TASKS_LIST_TITLE_TEXT,
@@ -32,7 +32,7 @@ class TaskDetailView(AuthorizationRequiredMixin, DetailView):
 class CreateTaskView(AuthorizationRequiredMixin, SuccessMessageMixin,
                      CreateView):
     form_class = TaskForm
-    template_name = 'tasks/update_create_task_form.html'
+    template_name = 'update_create_form.html'
     success_url = reverse_lazy('task-list-page')
     extra_context = {
         'title': texts.CREATE_TASK_TEXT,
@@ -50,7 +50,7 @@ class UpdateTaskView(AuthorizationRequiredMixin,SuccessMessageMixin,
                      UpdateView):
     model = TaskModel
     form_class = TaskForm
-    template_name = 'tasks/update_create_task_form.html'
+    template_name = 'update_create_form.html'
     success_url = reverse_lazy('task-list-page')
     extra_context = {
         'title': texts.UPDATE_TASK_TITLE_TEXT,
@@ -63,8 +63,8 @@ class UpdateTaskView(AuthorizationRequiredMixin,SuccessMessageMixin,
 class DeleteTaskView(AuthorizationRequiredMixin, AuthorDeletionMixin,
                      SuccessMessageMixin, DeleteView):
     model = TaskModel
-    template_name = 'tasks/delete_task.html'
-    context_object_name = 'task'
+    template_name = 'delete_form.html'
+    context_object_name = 'object'
     success_url = reverse_lazy('task-list-page')
     author_url = reverse_lazy('task-list-page')
     extra_context = {

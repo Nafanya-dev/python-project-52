@@ -10,10 +10,19 @@ CREATE_BUTTON_TEXT = _('Create')
 # MESSAGES
 AUTHORIZATION_MESSAGE = _("You are not authorized! Please log in.")
 DELETE_USER_PROTECT_MESSAGE = _('Cannot delete user because it is in use')
+
+# -- FORMS --
+
+# LABELS
+NAME_LABEL_FORM = _('Name')
+DESCRIPTION_LABEL_FORM = _('Description')
+STATUS_LABEL_FORM = _('Status')
+EXECUTOR_LABEL_FORM = _('Executor')
+
 # ----
 
 
-# --- SETTINGS.PY ---
+# === SETTINGS.PY ===
 PASSWORD_VALIDATOR_MESSAGE = _("Your password must contain at least 3 characters.")
 
 # ----
@@ -73,11 +82,6 @@ DELETE_STATUS_PROTECT_MESSAGE = _('Cannot delete status because it is in use')
 STATUSES_LIST_TITLE_TEXT = _('Statuses')
 UPDATE_STATUS_TITLE_TEXT = _('Change Status')
 DELETE_STATUS_TITLE_TEXT = _('Delete status')
-
-# -- TASK_MANAGER.STATUSES.FORMS.PY --
-
-# LABELS
-NAME_LABEL_STATUS_FORM = _('Name')
 
 # ----
 

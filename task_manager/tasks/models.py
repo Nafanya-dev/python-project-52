@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+
 class TaskModel(models.Model):
     title = models.CharField(max_length=200, unique=True)
     description = models.TextField()

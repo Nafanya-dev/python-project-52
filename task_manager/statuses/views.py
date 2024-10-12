@@ -34,7 +34,7 @@ class CreateStatusView(AuthorizationRequiredMixin, SuccessMessageMixin,
     to the status list page ('/statuses/')
     """
     form_class = StatusForm
-    template_name = 'statuses/update_create_status_form.html'
+    template_name = 'update_create_form.html'
     success_url = reverse_lazy('status-list-page')
     extra_context = {
         'title': texts.CREATE_STATUS_TEXT,
@@ -55,7 +55,7 @@ class UpdateStatusView(AuthorizationRequiredMixin, SuccessMessageMixin,
     """
     model = Status
     form_class = StatusForm
-    template_name = 'statuses/update_create_status_form.html'
+    template_name = 'update_create_form.html'
     success_url = reverse_lazy('status-list-page')
     extra_context = {
         'title': texts.UPDATE_STATUS_TITLE_TEXT,
@@ -74,8 +74,8 @@ class DeleteStatusView(AuthorizationRequiredMixin, DeleteProtectionMixin,
     Method POST delete status and redirects to the status list page
     """
     model = Status
-    template_name = 'statuses/delete_status.html'
-    context_object_name = 'status'
+    template_name = 'delete_form.html'
+    context_object_name = 'object'
     success_url = reverse_lazy('status-list-page')
     protected_url = reverse_lazy('status-list-page')
     extra_context = {
