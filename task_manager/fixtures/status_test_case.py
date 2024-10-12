@@ -9,23 +9,26 @@ User = get_user_model()
 
 class StatusTestCase(TestCase):
     def setUp(self):
-        self.update_data = {'name': 'completed'}
-        self.create_data = {'name': 'new'}
+        self.data = {
+            'Create_data': {'name': 'new'},
+            'Updated_data': {'name': 'completed'},
+        }
 
-        self.status_list_url = reverse_lazy('status-list-page')
-        self.login_url = reverse_lazy('login-page')
-        self.create_url = reverse_lazy('create-status-page')
-
-        self.update_create_template = 'statuses/update_create_status_form.html'
-        self.delete_template = 'statuses/delete_status.html'
-
+        self.status = Status.objects.create(name='at work')
         self.user = User.objects.create_user(username='mr_white',
                                              password='123')
 
-        self.status = Status.objects.create(name='at work')
+        self.urls = {
+            'status_list_url': reverse_lazy('status-list-page'),
+            'login_url': reverse_lazy('login-page'),
+            'create_url': reverse_lazy('create-status-page'),
+            'update_url': reverse_lazy('update-status-page',
+                                      kwargs={'pk': self.status.pk}),
+            'delete_url': reverse_lazy('delete-status-page',
+                                      kwargs={'pk': self.status.pk}),
+        }
 
-        self.update_url = reverse_lazy('update-status-page',
-                                       kwargs={'pk': self.status.pk})
-
-        self.delete_url = reverse_lazy('delete-status-page',
-                                       kwargs={'pk': self.status.pk})
+        self.templates = {
+            'update_create_form': 'update_create_form.html',
+            'delete': 'delete_form.html',
+        }
