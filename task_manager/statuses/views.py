@@ -16,11 +16,13 @@ class StatusListView(AuthorizationRequiredMixin, ListView):
     Method GET Returns the HTML code of the status list page.
     """
     model = Status
-    template_name = 'statuses/status_list.html'
-    context_object_name = 'statuses'
+    template_name = 'status_label_list.html'
+    context_object_name = 'objects'
     extra_context = {
         'title': texts.STATUSES_LIST_TITLE_TEXT,
-        'button_text': texts.CREATE_STATUS_TEXT
+        'button_text': texts.CREATE_STATUS_TEXT,
+        'update_url': 'update-status-page',
+        'delete_url': 'delete-status-page'
     }
 
 

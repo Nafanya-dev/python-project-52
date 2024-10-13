@@ -103,3 +103,10 @@ DELETE_TASK_TITLE_TEXT = _('Delete task')
 DETAIL_TASK_TITLE_TEXT = _('View a task')
 
 # ----
+
+
+# === LABELS ===
+# -- TASK_MANAGER.LABELS.MODELS.PY --
+
+# MESSAGES
+DELETE_LABEL_PROTECT_MESSAGE = _('Cannot delete label because it is in use')

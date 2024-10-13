@@ -23,12 +23,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for status in statuses %}
+                    {% for object in objects %}
                         <tr>
-                            <td>{{ status.id }}</td>
-                            <td>{{ status.name }}</td>
-                            <td>{{ status.created_at|date:"d.m.Y H:i" }}</td>
-                            <td><a class="mb-2 btn btn-sm btn-success" href="{% url 'update-status-page' status.id %}">{% trans "Edit" %}</a><br><a class="btn btn-sm btn-outline-danger" href="{% url 'delete-status-page' status.id %}">{% trans "Delete" %}</a></td>
+                            <td>{{ object.id }}</td>
+                            <td>{{ object.name }}</td>
+                            <td>{{ object.created_at|date:"d.m.Y H:i" }}</td>
+                            <td><a class="mb-2 btn btn-sm btn-success" href="{% url update_url object.id %}">{% trans "Edit" %}</a><br><a class="btn btn-sm btn-outline-danger" href="{% url delete_url object.id %}">{% trans "Delete" %}</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
