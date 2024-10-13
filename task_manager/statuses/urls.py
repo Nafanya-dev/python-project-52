@@ -15,12 +15,12 @@ urlpatterns = [
          name='create-status-page'),
 
     # Route to update a status by their primary key (pk).
-    path('<int:pk>/update',
+    path('<int:pk>/update/',
          views.UpdateStatusView.as_view(),
          name='update-status-page'),
 
     # Route to delete a status by their primary key (pk).
-    path('<int:pk>/delete',
+    path('<int:pk>/delete/',
          views.DeleteStatusView.as_view(),
          name='delete-status-page')
 ]

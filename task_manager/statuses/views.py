@@ -21,6 +21,7 @@ class StatusListView(AuthorizationRequiredMixin, ListView):
     extra_context = {
         'title': texts.STATUSES_LIST_TITLE_TEXT,
         'button_text': texts.CREATE_STATUS_TEXT,
+        'create_url': 'create-status-page',
         'update_url': 'update-status-page',
         'delete_url': 'delete-status-page'
     }

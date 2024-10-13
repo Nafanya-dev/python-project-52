@@ -18,6 +18,7 @@ NAME_LABEL_FORM = _('Name')
 DESCRIPTION_LABEL_FORM = _('Description')
 STATUS_LABEL_FORM = _('Status')
 EXECUTOR_LABEL_FORM = _('Executor')
+LABELS_FORM = _('Labels')
 
 # ----
 
@@ -92,8 +93,8 @@ CREATE_TASK_TEXT = _('Create a task')
 
 # MESSAGES
 CREATE_TASK_SUCCESS_MESSAGE = _('Task created successfully')
-UPDATE_TASK_SUCCESS_MESSAGE = _('Task successfully modified')
-DELETE_TASK_SUCCESS_MESSAGE = _('The task was successfully deleted')
+UPDATE_TASK_SUCCESS_MESSAGE = _('Task successfully changed')
+DELETE_TASK_SUCCESS_MESSAGE = _('Task successfully deleted')
 AUTHOR_TASK_MESSAGE = _('Only its author can delete a task')
 
 # TITLES
@@ -110,3 +111,16 @@ DETAIL_TASK_TITLE_TEXT = _('View a task')
 
 # MESSAGES
 DELETE_LABEL_PROTECT_MESSAGE = _('Cannot delete label because it is in use')
+
+# -- TASK_MANAGER.LABELS.VIEWS.PY --
+CREATE_LABEL_TEXT = _('Create a label')
+
+# MESSAGES
+CREATE_LABEL_SUCCESS_MESSAGE = _('Label created successfully')
+UPDATE_LABEL_SUCCESS_MESSAGE = _('Label successfully changed')
+DELETE_LABEL_SUCCESS_MESSAGE = _('Label successfully deleted')
+
+# TITLES
+LABEL_LIST_TITLE_TEXT = _('Labels')
+UPDATE_LABEL_TITLE_TEXT = _('Change label')
+DELETE_LABEL_TITLE_TEXT = _('Delete label')
