@@ -15,6 +15,7 @@ STATUS_LIST_URL = reverse_lazy('status-list-page')
 
 UPDATE_CREATE_TEMPLATE = 'update_create_form.html'
 
+
 class StatusListView(AuthorizationRequiredMixin, ListView):
     """
     URL ('/statuses/')

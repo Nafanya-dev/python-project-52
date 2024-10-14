@@ -14,6 +14,7 @@ LABEL_LIST_URL = reverse_lazy('label-list-page')
 
 UPDATE_CREATE_TEMPLATE = 'update_create_form.html'
 
+
 class LabelListView(AuthorizationRequiredMixin, ListView):
     """
     URL ('/labels/')

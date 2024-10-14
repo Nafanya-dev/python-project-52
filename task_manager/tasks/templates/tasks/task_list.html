@@ -14,7 +14,33 @@
 
             <h1>{{ title }}</h1>
             <a href="{% url 'create-task-page' %}" class="btn btn-success mt-2 mb-4">{{ button_text }}</a>
-            <table class="table table-light table-responsive table-striped shadow">
+            <div class="row">
+                <div class="col-9 col-sm-8 col-md-6 mb-3">
+                    <div class="p-3 shadow">
+                        <form method="get">
+                        {% csrf_token %}
+                            <div class="form-floating">
+                                {{ filter.form.status }}
+                                <label for="{{ filter.form.status.id_for_label }}">{{ filter.form.status.label }}</label>
+                            </div>
+                            <div class="form-floating">
+                                {{ filter.form.executor }}
+                                <label for="{{ filter.form.executor.id_for_label }}">{{ filter.form.executor.label }}</label>
+                            </div>
+                            <div class="form-floating">
+                                {{ filter.form.label }}
+                                <label for="{{ filter.form.label.id_for_label }}">{{ filter.form.label.label }}</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                {{ filter.form.self_tasks }}
+                                <label class="form-check-label mt-1" for="{{ filter.form.self_tasks.id_for_label }}">{{ filter.form.self_tasks.label }}</label>
+                            </div>
+                            <button type="submit" class="btn btn-success mt-2">{{ button_filter_text }}</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-light table-responsive table-striped shadow mt-2">
                 <thead class="table-secondary">
                     <tr>
                         <th>ID</th>

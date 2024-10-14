@@ -19,6 +19,8 @@ DESCRIPTION_LABEL_FORM = _('Description')
 STATUS_LABEL_FORM = _('Status')
 EXECUTOR_LABEL_FORM = _('Executor')
 LABELS_FORM = _('Labels')
+LABEL_FORM = _('Label')
+SELF_TASKS_LABEL_FORM = _('Only own tasks')
 
 # ----
 
@@ -91,6 +93,9 @@ DELETE_STATUS_TITLE_TEXT = _('Delete status')
 # -- TASK_MANAGER.TASKS.VIEWS.PY --
 CREATE_TASK_TEXT = _('Create a task')
 
+# BUTTONS
+BUTTON_FILTER_TEXT = _('Show')
+
 # MESSAGES
 CREATE_TASK_SUCCESS_MESSAGE = _('Task created successfully')
 UPDATE_TASK_SUCCESS_MESSAGE = _('Task successfully changed')
@@ -102,6 +107,8 @@ TASKS_LIST_TITLE_TEXT = _('Tasks')
 UPDATE_TASK_TITLE_TEXT = _('Change task')
 DELETE_TASK_TITLE_TEXT = _('Delete task')
 DETAIL_TASK_TITLE_TEXT = _('View a task')
+
+# -- TASK_MANAGER.TASKS.FILTERS.PY --
 
 # ----
 

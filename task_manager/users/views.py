@@ -2,8 +2,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from task_manager.mixins import (AuthorizationRequiredMixin,UserPermissionMixin,
-                                 DeleteProtectionMixin)
+from task_manager.mixins import (AuthorizationRequiredMixin,
+                                 UserPermissionMixin, DeleteProtectionMixin)
 
 from task_manager.users.forms import RegisterUserForm
 
@@ -14,6 +14,7 @@ from task_manager import texts
 USER_LIST_URL = reverse_lazy('user-list-page')
 
 UPDATE_CREATE_TEMPLATE = 'update_create_form.html'
+
 
 class UserListView(ListView):
     """

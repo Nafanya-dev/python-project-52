@@ -12,7 +12,7 @@ class RegisterUserForm(UserCreationForm):
         max_length=150,
         required=True,
         widget=forms.TextInput(
-            attrs={'class':'form-control',
+            attrs={'class': 'form-control',
                    'placeholder': texts.FIRST_NAME_LABEL_USER_FORM}))
 
     last_name = forms.CharField(
@@ -20,7 +20,7 @@ class RegisterUserForm(UserCreationForm):
         max_length=150,
         required=True,
         widget=forms.TextInput(
-            attrs={'class':'form-control mt-2',
+            attrs={'class': 'form-control mt-2',
                    'placeholder': texts.LAST_NAME_LABEL_USER_FORM}))
 
     username = forms.CharField(
@@ -29,7 +29,7 @@ class RegisterUserForm(UserCreationForm):
         required=True,
         help_text=texts.USERNAME_HELP_TEXT_USER_FORM,
         widget=forms.TextInput(
-            attrs={'class':'form-control mt-2',
+            attrs={'class': 'form-control mt-2',
                    'placeholder': texts.USERNAME_LABEL_USER_FORM}))
 
     password1 = forms.CharField(

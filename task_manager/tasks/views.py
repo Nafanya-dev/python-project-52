@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic import (ListView, CreateView, UpdateView,
+from django_filters.views import FilterView
+from django.views.generic import (CreateView, UpdateView,
                                   DeleteView, DetailView)
 
 from task_manager.mixins import (AuthorizationRequiredMixin,
@@ -8,6 +9,7 @@ from task_manager.mixins import (AuthorizationRequiredMixin,
 
 from task_manager.tasks.models import TaskModel
 from task_manager.tasks.forms import TaskForm
+from task_manager.tasks.filters import TaskFilter
 
 # module with texts for buttons, flash messages, titles
 from task_manager import texts
@@ -17,7 +19,8 @@ TASK_LIST_URL = reverse_lazy('task-list-page')
 
 UPDATE_CREATE_TEMPLATE = 'update_create_form.html'
 
-class TaskListView(AuthorizationRequiredMixin, ListView):
+
+class TaskListView(AuthorizationRequiredMixin, FilterView):
     """
     URL ('/tasks/')
 
@@ -26,10 +29,15 @@ class TaskListView(AuthorizationRequiredMixin, ListView):
     model = TaskModel
     template_name = 'tasks/task_list.html'
     context_object_name = 'tasks'
+    filterset_class = TaskFilter
     extra_context = {
         'title': texts.TASKS_LIST_TITLE_TEXT,
-        'button_text': texts.CREATE_TASK_TEXT
+        'button_text': texts.CREATE_TASK_TEXT,
+        'button_filter_text': texts.BUTTON_FILTER_TEXT
     }
+
+    def get_queryset(self):
+        return TaskModel.objects.all()
 
 
 class TaskDetailView(AuthorizationRequiredMixin, DetailView):
@@ -71,7 +79,7 @@ class CreateTaskView(AuthorizationRequiredMixin, SuccessMessageMixin,
     success_message = texts.CREATE_TASK_SUCCESS_MESSAGE
 
 
-class UpdateTaskView(AuthorizationRequiredMixin,SuccessMessageMixin,
+class UpdateTaskView(AuthorizationRequiredMixin, SuccessMessageMixin,
                      UpdateView):
     """
     URL ('/tasks/<pk>/update/').
