@@ -44,7 +44,7 @@ class UserTestCase(TestCase):
         self.user = User.objects.create_user(**self.data.get('User_data'))
 
         self.urls = {
-            'user_list_url': reverse_lazy('users-list-page'),
+            'user_list_url': reverse_lazy('user-list-page'),
             'create_url': reverse_lazy('register-user-page'),
             'login_url': reverse_lazy('login-page'),
             'update_url': reverse_lazy('update-user-page',

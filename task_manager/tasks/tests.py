@@ -23,7 +23,7 @@ class CreateTaskViewTest(TaskTestCase):
                                     self.data.get('Create_data'))
 
         self.assertRedirects(response, self.urls.get('task_list_url'))
-        self.assertTrue(TaskModel.objects.filter(title='New Task').exists())
+        self.assertTrue(TaskModel.objects.filter(name='New Task').exists())
 
 
 class UpdateTaskViewTest(TaskTestCase):
@@ -48,7 +48,7 @@ class UpdateTaskViewTest(TaskTestCase):
         self.assertRedirects(response, self.urls.get('task_list_url'))
 
         self.task.refresh_from_db()
-        self.assertEqual(self.task.title, 'Updated Task')
+        self.assertEqual(self.task.name, 'Updated Task')
 
 
 class DeleteTaskViewTest(TaskTestCase):

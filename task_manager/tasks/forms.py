@@ -14,23 +14,23 @@ class TaskForm(ModelForm):
     class Meta:
         model = TaskModel
         fields = [
-            'title',
+            'name',
             'description',
             'status',
-            'assignee',
+            'executor',
             'labels',
         ]
 
         labels = {
-            'title': texts.NAME_LABEL_FORM,
+            'name': texts.NAME_LABEL_FORM,
             'description': texts.DESCRIPTION_LABEL_FORM,
             'status': texts.STATUS_LABEL_FORM,
-            'assignee': texts.EXECUTOR_LABEL_FORM,
+            'executor': texts.EXECUTOR_LABEL_FORM,
             'labels': texts.LABELS_FORM,
         }
 
         widgets = {
-            'title': forms.TextInput(
+            'name': forms.TextInput(
                 attrs={'class': 'form-control',
                        'placeholder': texts.NAME_LABEL_FORM,
                        'autofocus': 'required'}),
@@ -41,7 +41,7 @@ class TaskForm(ModelForm):
                        'style': 'height: 10em;'}),
 
             'status': forms.Select(attrs={'class': 'form-control mt-2'}),
-            'assignee': forms.Select(attrs={'class': 'form-control mt-2'}),
+            'executor': forms.Select(attrs={'class': 'form-control mt-2'}),
             'labels': forms.SelectMultiple(attrs={'class': 'form-control mt-2',
                                                   'style': 'height: 7em;'}),
         }

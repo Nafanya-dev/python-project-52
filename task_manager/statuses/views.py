@@ -1,18 +1,24 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from task_manager.mixins import (AuthorizationRequiredMixin,
+                                 DeleteProtectionMixin)
+
 from task_manager.statuses.models import Status
 from task_manager.statuses.forms import StatusForm
-
-from task_manager.mixins import AuthorizationRequiredMixin, DeleteProtectionMixin
 
 # module with texts for buttons, flash messages, titles
 from task_manager import texts
 
 
+STATUS_LIST_URL = reverse_lazy('status-list-page')
+
+UPDATE_CREATE_TEMPLATE = 'update_create_form.html'
+
 class StatusListView(AuthorizationRequiredMixin, ListView):
     """
     URL ('/statuses/')
+
     Method GET Returns the HTML code of the status list page.
     """
     model = Status
@@ -37,12 +43,13 @@ class CreateStatusView(AuthorizationRequiredMixin, SuccessMessageMixin,
     to the status list page ('/statuses/')
     """
     form_class = StatusForm
-    template_name = 'update_create_form.html'
-    success_url = reverse_lazy('status-list-page')
+    template_name = UPDATE_CREATE_TEMPLATE
     extra_context = {
         'title': texts.CREATE_STATUS_TEXT,
         'button_text': texts.CREATE_BUTTON_TEXT
     }
+
+    success_url = STATUS_LIST_URL
 
     success_message = texts.CREATE_STATUS_SUCCESS_MESSAGE
 
@@ -58,12 +65,13 @@ class UpdateStatusView(AuthorizationRequiredMixin, SuccessMessageMixin,
     """
     model = Status
     form_class = StatusForm
-    template_name = 'update_create_form.html'
-    success_url = reverse_lazy('status-list-page')
+    template_name = UPDATE_CREATE_TEMPLATE
     extra_context = {
         'title': texts.UPDATE_STATUS_TITLE_TEXT,
         'button_text': texts.EDIT_BUTTON_TEXT
     }
+
+    success_url = STATUS_LIST_URL
 
     success_message = texts.UPDATE_STATUS_SUCCESS_MESSAGE
 
@@ -79,12 +87,13 @@ class DeleteStatusView(AuthorizationRequiredMixin, DeleteProtectionMixin,
     model = Status
     template_name = 'delete_form.html'
     context_object_name = 'object'
-    success_url = reverse_lazy('status-list-page')
-    protected_url = reverse_lazy('status-list-page')
     extra_context = {
         'title': texts.DELETE_STATUS_TITLE_TEXT,
         'button_text': texts.DELETE_BUTTON_TEXT
     }
+
+    success_url = STATUS_LIST_URL
+    protected_url = STATUS_LIST_URL
 
     protected_message = texts.DELETE_STATUS_PROTECT_MESSAGE
     success_message = texts.DELETE_STATUS_SUCCESS_MESSAGE

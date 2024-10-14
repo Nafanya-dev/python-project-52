@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link me-2 fs-5" href="{% url 'users-list-page' %}">{% trans "Users" %}</a>
+          <a class="nav-link me-2 fs-5" href="{% url 'user-list-page' %}">{% trans "Users" %}</a>
         </li>
       {% if request.user.is_authenticated %}
         <li class="nav-item">

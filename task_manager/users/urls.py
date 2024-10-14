@@ -6,7 +6,7 @@ from task_manager.users import views
 urlpatterns = [
     # Users page. route('users/')
     path('', views.UserListView.as_view(),
-         name='users-list-page'),
+         name='user-list-page'),
 
     # Route to create a user
     path('create/',

@@ -8,7 +8,7 @@
     <h1>{{ title }}</h1>
     <div class="shadow card">
         <div class="card-header bg-secondary text-white">
-            <h2>{{ task.title }}</h2>
+            <h2>{{ task.name }}</h2>
         </div>
         <div class="card-body">
             {{ task.description }}
@@ -28,7 +28,7 @@
                     {% trans 'Executor' %}
                 </div>
                 <div class="col">
-                    {{ task.assignee|default:'' }}
+                    {{ task.executor|default:'' }}
                 </div>
             </div>
             <div class="row p-1">
@@ -45,6 +45,16 @@
                 </div>
                 <div class="col">
                     {{ task.created_at|date:"d.m.Y H:i" }}
+                </div>
+            </div>
+            <div class="row p-1 mt-2">
+                <div class="col">
+                    <h6>{% trans 'Labels' %}:</h6>
+                    <ul>
+                    {% for l in task.labels.all %}
+                        <li>{{ l }}</li>
+                    {% endfor %}
+                    </ul>
                 </div>
             </div>
             <div class="row p-1">

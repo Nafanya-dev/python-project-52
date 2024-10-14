@@ -14,7 +14,7 @@ class TaskTestCase(TestCase):
         self.user = User.objects.create_user(username='testuser', password='password')
         self.wrong_user = User.objects.create_user(username='wronguser', password='password')
         self.task = TaskModel.objects.create(
-            title='Test Task',
+            name='Test Task',
             description='This is a test task.',
             status=self.status,
             author=self.user
@@ -22,12 +22,12 @@ class TaskTestCase(TestCase):
 
         self.data = {
             'Create_data': {
-                'title': 'New Task',
+                'name': 'New Task',
                 'description': 'Description for new task.',
                 'status': self.status.pk,
             },
             'Updated_data': {
-                'title': 'Updated Task',
+                'name': 'Updated Task',
                 'description': 'Updated description.',
                 'status': self.status.pk,
             },

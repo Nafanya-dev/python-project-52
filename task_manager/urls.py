@@ -34,7 +34,7 @@ urlpatterns = [
     path('tasks/', include('task_manager.tasks.urls')),
 
     # Label list page
-    path('labels', include('task_manager.labels.urls')),
+    path('labels/', include('task_manager.labels.urls')),
 
     # Route for user login
     path('login/',
