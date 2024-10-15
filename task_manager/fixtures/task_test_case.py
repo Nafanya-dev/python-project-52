@@ -1,18 +1,12 @@
-from django.test import TestCase
+from task_manager.fixtures.base_test_case import BaseTestCase
 from django.urls import reverse_lazy
-from django.contrib.auth import get_user_model
-from task_manager.statuses.models import Status
 from task_manager.tasks.models import TaskModel
 
 
-User = get_user_model()
-
-
-class TaskTestCase(TestCase):
+class TaskTestCase(BaseTestCase):
     def setUp(self):
-        self.status = Status.objects.create(name='In Progress')
-        self.user = User.objects.create_user(username='testuser', password='password')
-        self.wrong_user = User.objects.create_user(username='wronguser', password='password')
+        super().setUp()
+
         self.task = TaskModel.objects.create(
             name='Test Task',
             description='This is a test task.',
@@ -20,7 +14,20 @@ class TaskTestCase(TestCase):
             author=self.user
         )
 
-        self.data = {
+    def get_urls(self):
+        return {
+            'login_url': reverse_lazy('login-page'),
+            'task_list_url': reverse_lazy('task-list-page'),
+            'create_url': reverse_lazy('create-task-page'),
+            'update_url': reverse_lazy('update-task-page',
+                                       kwargs={'pk': self.task.pk}),
+
+            'delete_url': reverse_lazy('delete-task-page',
+                                       kwargs={'pk': self.task.pk})
+        }
+
+    def get_data(self):
+        return {
             'Create_data': {
                 'name': 'New Task',
                 'description': 'Description for new task.',
@@ -31,17 +38,4 @@ class TaskTestCase(TestCase):
                 'description': 'Updated description.',
                 'status': self.status.pk,
             },
-        }
-
-        self.urls = {
-            'login_url': reverse_lazy('login-page'),
-            'task_list_url': reverse_lazy('task-list-page'),
-            'create_url': reverse_lazy('create-task-page'),
-            'update_url': reverse_lazy('update-task-page', kwargs={'pk': self.task.pk}),
-            'delete_url': reverse_lazy('delete-task-page', kwargs={'pk': self.task.pk})
-        }
-
-        self.templates = {
-            'update_create_form': 'update_create_form.html',
-            'delete': 'delete_form.html'
         }
