@@ -17,6 +17,7 @@ gunicorn = "^23.0.0"
 uvicorn = "^0.31.0"
 django-bootstrap5 = "^24.3"
 django-filter = "^24.3"
+rollbar = "^1.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
