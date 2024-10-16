@@ -1,3 +1,5 @@
 from django.contrib import admin
+from task_manager.labels.models import LabelModel
 
-# Register your models here.
+
+admin.site.register(LabelModel)

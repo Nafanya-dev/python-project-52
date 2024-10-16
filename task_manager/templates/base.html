@@ -13,20 +13,21 @@
     {% bootstrap_css %}
 </head>
 
-<body class="d-flex flex-column h-100 mt-4 bg-light">
+<body class="d-flex flex-column min-vh-100 bg-light">
 
 <header>
     {% include 'header_menu.html' %}
 </header>
 
-<main class="flex-shrink-0 mt-4">
+<main class="flex-grow-1 mt-4">
   <div class="container mt-5">
       {% block content %}{% endblock %}
   </div>
 </main>
 
-<footer class="footer mt-auto py-3 bg-light mt-2">
-  <div class="container">
+<footer class="footer mt-auto py-3 bg-light">
+  <div class="container border-top">
+      <a href="https://github.com/Nafanya-dev/python-project-52">GitHub</a>
   </div>
 </footer>
 {% bootstrap_javascript %}
