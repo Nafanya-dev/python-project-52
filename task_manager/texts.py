@@ -60,7 +60,10 @@ PASSWORD1_LABEL_USER_FORM = _("Password")
 PASSWORD2_LABEL_USER_FORM = _("Password confirmation")
 
 # HELP TEXTS
-USERNAME_HELP_TEXT_USER_FORM = _("Required field. No more than 150 characters. Only letters, numbers and symbols @/./+/-/_.")
+USERNAME_HELP_TEXT_USER_FORM = _(
+    """Required field. No more than 150 characters. Only letters,
+    numbers and symbols @/./+/-/_."""
+)
 PASSWORD1_HELP_TEXT_USER_FORM = _("Your password must contain at least 3 characters.")
 PASSWORD2_HELP_TEXT_USER_FORM = _("To confirm, please enter your password again.")
 

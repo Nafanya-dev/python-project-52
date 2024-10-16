@@ -36,7 +36,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', False)
 
-DATABASE_URL = os.getenv('DATABASE_URL')
+DATABASE_URL = os.getenv('DATABASE_URL', 'sqlite:///db.sqlite3')
 
 ALLOWED_HOSTS = [
     'task-manager-1esk.onrender.com',
@@ -121,20 +121,20 @@ DATABASES = {
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    #{
+    # {
     #    'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    #},
+    # },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
         'OPTIONS': {'min_length': 3},
         'message': texts.PASSWORD_VALIDATOR_MESSAGE,
     },
-    #{
+    # {
     #    'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    #},
-    #{
+    # },
+    # {
     #    'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    #},
+    # },
 ]
 
 
@@ -161,7 +161,7 @@ LANGUAGES = (
 STATIC_URL = '/static/'
 
 LOCALE_PATHS = (
-    os.path.join( BASE_DIR / "locale"),
+    os.path.join(BASE_DIR / "locale"),
 )
 
 if not DEBUG:
@@ -187,6 +187,5 @@ MESSAGE_TAGS = {
 ROLLBAR = {
     'access_token': os.getenv('ROLLBAR_ACCESS_TOKEN'),
     'environment': 'development' if DEBUG else 'production',
-    'code_version': '1.0',
     'root': BASE_DIR,
 }

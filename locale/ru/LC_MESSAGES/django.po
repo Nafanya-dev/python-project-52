@@ -115,7 +115,7 @@ msgstr "Зарегистрировать"
 
 #: task_manager/texts.py:7
 msgid "Yes, Delete"
-msgstr "Да, Удалить"
+msgstr "Да, удалить"
 
 #: task_manager/texts.py:8
 msgid "Create"
@@ -198,9 +198,7 @@ msgid "Password confirmation"
 msgstr "Подтверждение пароля"
 
 #: task_manager/texts.py:63
-msgid ""
-"Required field. No more than 150 characters. Only letters, numbers and "
-"symbols @/./+/-/_."
+msgid "Required field. No more than 150 characters. Only letters, numbers and symbols @/./+/-/_."
 msgstr "Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./+/-/_."
 
 #: task_manager/texts.py:65

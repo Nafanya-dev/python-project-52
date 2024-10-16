@@ -2,7 +2,7 @@
 
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Nafanya-dev/python-project-52/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Nafanya-dev/python-project-52/actions)
-
+[![Test Coverage](https://api.codeclimate.com/v1/badges/8bc87c38c65db89213ea/test_coverage)](https://codeclimate.com/github/Nafanya-dev/python-project-52/test_coverage)
 
 ## About
 
@@ -32,13 +32,17 @@ Python 3.10+
 
 The project uses the Poetry dependency manager. To install Poetry use its [official instruction](https://python-poetry.org/docs/#installation).
 
-#### PostgreSQL
+#### PostgreSQL or SQLite
 
 As database the PostgreSQL database system is being used. You need to install it first. You can download the ready-to-use package from [official website](https://www.postgresql.org/download/) or use apt:
 ```bash
 >> sudo apt update
 >> sudo apt install postgresql
 ```
+
+Or
+
+You can skip this step and use SQLite database locally.
 
 ### Application
 
@@ -59,6 +63,7 @@ Create `.env` file in the root folder and add following variables:
 DATABASE_URL=postgresql://{provider}://{user}:{password}@{host}:{port}/{db}
 SECRET_KEY={your secret key}
 ```
+If you choose to use SQLite DBMS, do not add DATABASE_URL variable.
 
 To create the necessary tables in the database, start the migration process:
 ```bash
