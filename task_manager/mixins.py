@@ -2,10 +2,11 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import ProtectedError
 from django.shortcuts import redirect
+from django.utils.translation import gettext_lazy as _
 from django.urls import reverse_lazy
 
-# module with texts for buttons, flash messages, titles
-from task_manager import texts
+
+AUTHORIZATION_MESSAGE = _("You are not authorized! Please log in.")
 
 
 class AuthorizationRequiredMixin(LoginRequiredMixin):
@@ -14,7 +15,7 @@ class AuthorizationRequiredMixin(LoginRequiredMixin):
     whether the user is authenticated.
     If not, it displays an error message and redirects to the login page
     """
-    authorization_message = texts.AUTHORIZATION_MESSAGE
+    authorization_message = AUTHORIZATION_MESSAGE
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:

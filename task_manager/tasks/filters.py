@@ -1,15 +1,18 @@
 from django_filters import FilterSet, ModelChoiceFilter, BooleanFilter
+from django.utils.translation import gettext_lazy as _
 from task_manager.tasks.models import TaskModel
 from task_manager.labels.models import LabelModel
 from task_manager.statuses.models import Status
 from django.contrib.auth import get_user_model
 from django import forms
 
-# module with texts for buttons, flash messages, titles
+# module containing the texts of common buttons and form titles
 from task_manager import texts
 
 
 USER = get_user_model()
+
+SELF_TASKS_LABEL_FORM = _('Only own tasks')
 
 
 class TaskFilter(FilterSet):
@@ -33,7 +36,7 @@ class TaskFilter(FilterSet):
     )
 
     self_tasks = BooleanFilter(
-        label=texts.SELF_TASKS_LABEL_FORM,
+        label=SELF_TASKS_LABEL_FORM,
         widget=forms.CheckboxInput(attrs={'class': 'form-check-input mt-2'}),
         method='get_own_tasks',
     )

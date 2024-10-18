@@ -1,5 +1,6 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from task_manager.labels.models import LabelModel
 from task_manager.labels.forms import LabelForm
@@ -7,12 +8,21 @@ from task_manager.utils.enums import Template
 from task_manager.mixins import (AuthorizationRequiredMixin,
                                  DeleteProtectionMixin)
 
-# module that stores all texts for the project in one place,
-# buttons, headings, messages
+# module containing the texts of common buttons and form titles
 from task_manager import texts
 
 
 LABEL_LIST_URL = reverse_lazy('label-list-page')
+
+CREATE_LABEL_SUCCESS_MESSAGE = _('Label created successfully')
+UPDATE_LABEL_SUCCESS_MESSAGE = _('Label successfully changed')
+DELETE_LABEL_SUCCESS_MESSAGE = _('Label successfully deleted')
+DELETE_LABEL_PROTECT_MESSAGE = _('Cannot delete label because it is in use')
+
+CREATE_LABEL_TEXT = _('Create a label')
+LABEL_LIST_TITLE_TEXT = _('Labels')
+UPDATE_LABEL_TITLE_TEXT = _('Change label')
+DELETE_LABEL_TITLE_TEXT = _('Delete label')
 
 
 class LabelListView(AuthorizationRequiredMixin, ListView):
@@ -25,8 +35,8 @@ class LabelListView(AuthorizationRequiredMixin, ListView):
     template_name = 'status_label_list.html'
     context_object_name = 'objects'
     extra_context = {
-        'title': texts.LABEL_LIST_TITLE_TEXT,
-        'button_text': texts.CREATE_LABEL_TEXT,
+        'title': LABEL_LIST_TITLE_TEXT,
+        'button_text': CREATE_LABEL_TEXT,
         'create_url': 'create-label-page',
         'update_url': 'update-label-page',
         'delete_url': 'delete-label-page'
@@ -45,13 +55,13 @@ class CreateLabelView(AuthorizationRequiredMixin, SuccessMessageMixin,
     form_class = LabelForm
     template_name = Template.update_create.value
     extra_context = {
-        'title': texts.CREATE_LABEL_TEXT,
+        'title': CREATE_LABEL_TEXT,
         'button_text': texts.CREATE_BUTTON_TEXT
     }
 
     success_url = LABEL_LIST_URL
 
-    success_message = texts.CREATE_LABEL_SUCCESS_MESSAGE
+    success_message = CREATE_LABEL_SUCCESS_MESSAGE
 
 
 class UpdateLabelView(AuthorizationRequiredMixin, SuccessMessageMixin,
@@ -67,13 +77,13 @@ class UpdateLabelView(AuthorizationRequiredMixin, SuccessMessageMixin,
     form_class = LabelForm
     template_name = Template.update_create.value
     extra_context = {
-        'title': texts.UPDATE_LABEL_TITLE_TEXT,
+        'title': UPDATE_LABEL_TITLE_TEXT,
         'button_text': texts.EDIT_BUTTON_TEXT
     }
 
     success_url = LABEL_LIST_URL
 
-    success_message = texts.UPDATE_LABEL_SUCCESS_MESSAGE
+    success_message = UPDATE_LABEL_SUCCESS_MESSAGE
 
 
 class DeleteLabelView(AuthorizationRequiredMixin, DeleteProtectionMixin,
@@ -88,12 +98,12 @@ class DeleteLabelView(AuthorizationRequiredMixin, DeleteProtectionMixin,
     template_name = Template.delete.value
     context_object_name = 'object'
     extra_context = {
-        'title': texts.DELETE_LABEL_TITLE_TEXT,
+        'title': DELETE_LABEL_TITLE_TEXT,
         'button_text': texts.DELETE_BUTTON_TEXT
     }
 
     success_url = LABEL_LIST_URL
     protected_url = LABEL_LIST_URL
 
-    success_message = texts.DELETE_LABEL_SUCCESS_MESSAGE
-    protected_message = texts.DELETE_LABEL_PROTECT_MESSAGE
+    success_message = DELETE_LABEL_SUCCESS_MESSAGE
+    protected_message = DELETE_LABEL_PROTECT_MESSAGE

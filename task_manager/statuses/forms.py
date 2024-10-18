@@ -2,8 +2,7 @@ from django.forms import ModelForm
 from django import forms
 from task_manager.statuses.models import Status
 
-# module that stores all texts for the project in one place,
-# buttons, headings, messages
+# module containing the texts of common buttons and form titles
 from task_manager import texts
 
 

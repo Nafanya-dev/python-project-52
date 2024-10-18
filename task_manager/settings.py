@@ -13,16 +13,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 from django.contrib.messages import constants as messages
+from django.utils.translation import gettext_lazy as _
 import dj_database_url
 import os
-
-# module that stores all texts for the project in one place,
-# buttons, headings, messages
-from task_manager import texts
 
 
 load_dotenv()
 
+PASSWORD_VALIDATOR_MESSAGE = _("Your password must contain at least 3 characters.")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -129,7 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
         'OPTIONS': {'min_length': 3},
-        'message': texts.PASSWORD_VALIDATOR_MESSAGE,
+        'message': PASSWORD_VALIDATOR_MESSAGE,
     },
     # {
     #    'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',

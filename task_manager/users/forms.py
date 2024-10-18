@@ -1,55 +1,66 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
-# module that stores all texts for the project in one place,
-# buttons, headings, messages
-from task_manager import texts
+
+FIRST_NAME_LABEL_USER_FORM = _("First name")
+LAST_NAME_LABEL_USER_FORM = _("Last name")
+USERNAME_LABEL_USER_FORM = _("Username")
+PASSWORD1_LABEL_USER_FORM = _("Password")
+PASSWORD2_LABEL_USER_FORM = _("Password confirmation")
+
+USERNAME_HELP_TEXT_USER_FORM = _("""Required field. No more than 150 characters. Only letters,
+                                    numbers and symbols @/./+/-/_.""")
+
+PASSWORD1_HELP_TEXT_USER_FORM = _("Your password must contain at least 3 characters.")
+PASSWORD2_HELP_TEXT_USER_FORM = _("To confirm, please enter your password again.")
+USERNAME_VALIDATION_ERROR_MESSAGE_USER_FORM = _("A user with that username already exists.")
 
 
 class RegisterUserForm(UserCreationForm):
     first_name = forms.CharField(
-        label=texts.FIRST_NAME_LABEL_USER_FORM,
+        label=FIRST_NAME_LABEL_USER_FORM,
         max_length=150,
         required=True,
         widget=forms.TextInput(
             attrs={'class': 'form-control',
-                   'placeholder': texts.FIRST_NAME_LABEL_USER_FORM}))
+                   'placeholder': FIRST_NAME_LABEL_USER_FORM}))
 
     last_name = forms.CharField(
-        label=texts.LAST_NAME_LABEL_USER_FORM,
+        label=LAST_NAME_LABEL_USER_FORM,
         max_length=150,
         required=True,
         widget=forms.TextInput(
             attrs={'class': 'form-control mt-2',
-                   'placeholder': texts.LAST_NAME_LABEL_USER_FORM}))
+                   'placeholder': LAST_NAME_LABEL_USER_FORM}))
 
     username = forms.CharField(
-        label=texts.USERNAME_LABEL_USER_FORM,
+        label=USERNAME_LABEL_USER_FORM,
         max_length=150,
         required=True,
-        help_text=texts.USERNAME_HELP_TEXT_USER_FORM,
+        help_text=USERNAME_HELP_TEXT_USER_FORM,
         widget=forms.TextInput(
             attrs={'class': 'form-control mt-2',
-                   'placeholder': texts.USERNAME_LABEL_USER_FORM}))
+                   'placeholder': USERNAME_LABEL_USER_FORM}))
 
     password1 = forms.CharField(
-        label=texts.PASSWORD1_LABEL_USER_FORM,
+        label=PASSWORD1_LABEL_USER_FORM,
         required=True,
-        help_text=texts.PASSWORD1_HELP_TEXT_USER_FORM,
+        help_text=PASSWORD1_HELP_TEXT_USER_FORM,
         widget=forms.PasswordInput(
             attrs={'autocomplete': 'new-password',
                    'class': 'form-control mt-2',
-                   'placeholder': texts.PASSWORD1_LABEL_USER_FORM}))
+                   'placeholder': PASSWORD1_LABEL_USER_FORM}))
 
     password2 = forms.CharField(
-        label=texts.PASSWORD2_LABEL_USER_FORM,
+        label=PASSWORD2_LABEL_USER_FORM,
         required=True,
-        help_text=texts.PASSWORD2_HELP_TEXT_USER_FORM,
+        help_text=PASSWORD2_HELP_TEXT_USER_FORM,
         widget=forms.PasswordInput(
             attrs={'autocomplete': 'new-password',
                    'class': 'form-control mt-2',
-                   'placeholder': texts.PASSWORD2_LABEL_USER_FORM}))
+                   'placeholder': PASSWORD2_LABEL_USER_FORM}))
 
     class Meta:
         model = get_user_model()
@@ -72,6 +83,6 @@ class RegisterUserForm(UserCreationForm):
 
         if get_user_model().objects.filter(username=username).exists():
             raise forms.ValidationError(
-                  texts.USERNAME_VALIDATION_ERROR_MESSAGE_USER_FORM)
+                  USERNAME_VALIDATION_ERROR_MESSAGE_USER_FORM)
 
         return username
