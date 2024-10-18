@@ -4,6 +4,7 @@ from django_filters.views import FilterView
 from django.views.generic import (CreateView, UpdateView,
                                   DeleteView, DetailView)
 
+from task_manager.utils.enums import Template
 from task_manager.mixins import (AuthorizationRequiredMixin,
                                  AuthorDeletionMixin)
 
@@ -17,8 +18,6 @@ from task_manager import texts
 
 
 TASK_LIST_URL = reverse_lazy('task-list-page')
-
-UPDATE_CREATE_TEMPLATE = 'update_create_form.html'
 
 
 class TaskListView(AuthorizationRequiredMixin, FilterView):
@@ -65,7 +64,7 @@ class CreateTaskView(AuthorizationRequiredMixin, SuccessMessageMixin,
     to the task list page ('/tasks/')
     """
     form_class = TaskForm
-    template_name = UPDATE_CREATE_TEMPLATE
+    template_name = Template.update_create.value
     extra_context = {
         'title': texts.CREATE_TASK_TEXT,
         'button_text': texts.CREATE_BUTTON_TEXT
@@ -91,7 +90,7 @@ class UpdateTaskView(AuthorizationRequiredMixin, SuccessMessageMixin,
     """
     model = TaskModel
     form_class = TaskForm
-    template_name = UPDATE_CREATE_TEMPLATE
+    template_name = Template.update_create.value
     extra_context = {
         'title': texts.UPDATE_TASK_TITLE_TEXT,
         'button_text': texts.EDIT_BUTTON_TEXT
@@ -111,7 +110,7 @@ class DeleteTaskView(AuthorizationRequiredMixin, AuthorDeletionMixin,
     Method POST delete task and redirects to the task list page
     """
     model = TaskModel
-    template_name = 'delete_form.html'
+    template_name = Template.delete.value
     context_object_name = 'object'
     extra_context = {
         'title': texts.DELETE_TASK_TITLE_TEXT,

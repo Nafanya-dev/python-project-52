@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from task_manager.labels.models import LabelModel
 from task_manager.labels.forms import LabelForm
+from task_manager.utils.enums import Template
 from task_manager.mixins import (AuthorizationRequiredMixin,
                                  DeleteProtectionMixin)
 
@@ -12,8 +13,6 @@ from task_manager import texts
 
 
 LABEL_LIST_URL = reverse_lazy('label-list-page')
-
-UPDATE_CREATE_TEMPLATE = 'update_create_form.html'
 
 
 class LabelListView(AuthorizationRequiredMixin, ListView):
@@ -44,7 +43,7 @@ class CreateLabelView(AuthorizationRequiredMixin, SuccessMessageMixin,
     to the label list page ('/labels/')
     """
     form_class = LabelForm
-    template_name = UPDATE_CREATE_TEMPLATE
+    template_name = Template.update_create.value
     extra_context = {
         'title': texts.CREATE_LABEL_TEXT,
         'button_text': texts.CREATE_BUTTON_TEXT
@@ -66,7 +65,7 @@ class UpdateLabelView(AuthorizationRequiredMixin, SuccessMessageMixin,
     """
     model = LabelModel
     form_class = LabelForm
-    template_name = UPDATE_CREATE_TEMPLATE
+    template_name = Template.update_create.value
     extra_context = {
         'title': texts.UPDATE_LABEL_TITLE_TEXT,
         'button_text': texts.EDIT_BUTTON_TEXT
@@ -86,7 +85,7 @@ class DeleteLabelView(AuthorizationRequiredMixin, DeleteProtectionMixin,
     Method POST delete label and redirects to the label list page
     """
     model = LabelModel
-    template_name = 'delete_form.html'
+    template_name = Template.delete.value
     context_object_name = 'object'
     extra_context = {
         'title': texts.DELETE_LABEL_TITLE_TEXT,

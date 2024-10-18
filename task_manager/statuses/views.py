@@ -1,6 +1,7 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from task_manager.utils.enums import Template
 from task_manager.mixins import (AuthorizationRequiredMixin,
                                  DeleteProtectionMixin)
 
@@ -13,8 +14,6 @@ from task_manager import texts
 
 
 STATUS_LIST_URL = reverse_lazy('status-list-page')
-
-UPDATE_CREATE_TEMPLATE = 'update_create_form.html'
 
 
 class StatusListView(AuthorizationRequiredMixin, ListView):
@@ -45,7 +44,7 @@ class CreateStatusView(AuthorizationRequiredMixin, SuccessMessageMixin,
     to the status list page ('/statuses/')
     """
     form_class = StatusForm
-    template_name = UPDATE_CREATE_TEMPLATE
+    template_name = Template.update_create.value
     extra_context = {
         'title': texts.CREATE_STATUS_TEXT,
         'button_text': texts.CREATE_BUTTON_TEXT
@@ -67,7 +66,7 @@ class UpdateStatusView(AuthorizationRequiredMixin, SuccessMessageMixin,
     """
     model = Status
     form_class = StatusForm
-    template_name = UPDATE_CREATE_TEMPLATE
+    template_name = Template.update_create.value
     extra_context = {
         'title': texts.UPDATE_STATUS_TITLE_TEXT,
         'button_text': texts.EDIT_BUTTON_TEXT
@@ -87,7 +86,7 @@ class DeleteStatusView(AuthorizationRequiredMixin, DeleteProtectionMixin,
     Method POST delete status and redirects to the status list page
     """
     model = Status
-    template_name = 'delete_form.html'
+    template_name = Template.delete.value
     context_object_name = 'object'
     extra_context = {
         'title': texts.DELETE_STATUS_TITLE_TEXT,

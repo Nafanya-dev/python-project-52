@@ -2,6 +2,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from task_manager.utils.enums import Template
 from task_manager.mixins import (AuthorizationRequiredMixin,
                                  UserPermissionMixin, DeleteProtectionMixin)
 
@@ -13,8 +14,6 @@ from task_manager import texts
 
 
 USER_LIST_URL = reverse_lazy('user-list-page')
-
-UPDATE_CREATE_TEMPLATE = 'update_create_form.html'
 
 
 class UserListView(ListView):
@@ -38,7 +37,7 @@ class RegisterUserView(SuccessMessageMixin, CreateView):
     Method POST Creates a new user and redirects to the login page ('/login/')
     """
     form_class = RegisterUserForm
-    template_name = UPDATE_CREATE_TEMPLATE
+    template_name = Template.update_create.value
     extra_context = {
         'title': texts.SIGN_UP_TITLE_TEXT,
         'button_text': texts.SIGN_UP_BUTTON_TEXT
@@ -59,7 +58,7 @@ class UpdateUserView(AuthorizationRequiredMixin, UserPermissionMixin,
     """
     model = get_user_model()
     form_class = RegisterUserForm
-    template_name = UPDATE_CREATE_TEMPLATE
+    template_name = Template.update_create.value
     extra_context = {
         'title': texts.UPDATE_USER_TITLE_TEXT,
         'button_text': texts.EDIT_BUTTON_TEXT
@@ -80,7 +79,7 @@ class DeleteUserView(AuthorizationRequiredMixin, UserPermissionMixin,
     Method POST delete user and redirects to the user list page
     """
     model = get_user_model()
-    template_name = 'delete_form.html'
+    template_name = Template.delete.value
     context_object_name = 'object'
     extra_context = {
         'title': texts.DELETE_USER_TITLE_TEXT,
