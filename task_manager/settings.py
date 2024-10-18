@@ -33,6 +33,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
+HOST = os.getenv('HOST')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', False)
@@ -40,7 +41,7 @@ DEBUG = os.getenv('DEBUG', False)
 DATABASE_URL = os.getenv('DATABASE_URL', 'sqlite:///db.sqlite3')
 
 ALLOWED_HOSTS = [
-    'task-manager-1esk.onrender.com',
+    HOST,
     'localhost',
     '127.0.0.1',
     'webserver',
