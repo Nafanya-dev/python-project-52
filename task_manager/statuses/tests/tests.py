@@ -1,4 +1,4 @@
-from task_manager.fixtures.status_test_case import StatusTestCase
+from task_manager.statuses.tests.fixtures.status_test_case import StatusTestCase
 
 from task_manager.statuses.models import Status
 
