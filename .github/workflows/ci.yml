@@ -1,4 +1,4 @@
-name: CI
+name: run tests
 
 on:
   - push
@@ -9,23 +9,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.10'
+      - name: Install python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.10'
 
-    - name: Install dependencies
+      - name: Install dependencies
         run: |
           pip install poetry
           make install
 
-    - name: Run code coverage
-        uses: paambaati/codeclimate-action@v7.6.3
+      - name: Run tests
         env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        run: |
+          make test
+
+      - name: Run code coverage
+        uses: paambaati/codeclimate-action@v3.2.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_REPO_TOKEN }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
         with:
-          coverageCommand: make test-coverage
+          coverageCommand: make coverage
           debug: true
