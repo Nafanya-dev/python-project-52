@@ -11,7 +11,8 @@ from task_manager.tasks.models import TaskModel
 from task_manager.tasks.forms import TaskForm
 from task_manager.tasks.filters import TaskFilter
 
-# module with texts for buttons, flash messages, titles
+# module that stores all texts for the project in one place,
+# buttons, headings, messages
 from task_manager import texts
 
 

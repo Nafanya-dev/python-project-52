@@ -8,15 +8,12 @@ urlpatterns = [
     path('', views.LabelListView.as_view(),
          name='label-list-page'),
 
-    # Route to create a label
     path('create/', views.CreateLabelView.as_view(),
          name='create-label-page'),
 
-    # Route to update a label by their primary key (pk).
     path('<int:pk>/update/', views.UpdateLabelView.as_view(),
          name='update-label-page'),
 
-    # Route to delete a label by their primary key (pk).
     path('<int:pk>/delete/', views.DeleteLabelView.as_view(),
          name='delete-label-page'),
 ]

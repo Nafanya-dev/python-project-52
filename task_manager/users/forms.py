@@ -2,7 +2,8 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
-# module with texts for buttons, flash messages, titles
+# module that stores all texts for the project in one place,
+# buttons, headings, messages
 from task_manager import texts
 
 

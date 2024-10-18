@@ -21,27 +21,20 @@ from task_manager import views
 
 
 urlpatterns = [
-    # Main page
     path('', views.HomeView.as_view(), name="home-page"),
 
-    # User list page
     path('users/', include('task_manager.users.urls')),
 
-    # Status list page
     path('statuses/', include('task_manager.statuses.urls')),
 
-    # Task list page
     path('tasks/', include('task_manager.tasks.urls')),
 
-    # Label list page
     path('labels/', include('task_manager.labels.urls')),
 
-    # Route for user login
     path('login/',
          views.LoginUserView.as_view(),
          name='login-page'),
 
-    # Route for user logout
     path('logout/',
          views.LogoutUserView.as_view(),
          name='logout-page'),

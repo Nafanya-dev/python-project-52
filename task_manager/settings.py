@@ -16,7 +16,8 @@ from django.contrib.messages import constants as messages
 import dj_database_url
 import os
 
-# module with texts for buttons, flash messages, titles
+# module that stores all texts for the project in one place,
+# buttons, headings, messages
 from task_manager import texts
 
 

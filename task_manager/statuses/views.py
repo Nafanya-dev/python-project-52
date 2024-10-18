@@ -7,7 +7,8 @@ from task_manager.mixins import (AuthorizationRequiredMixin,
 from task_manager.statuses.models import Status
 from task_manager.statuses.forms import StatusForm
 
-# module with texts for buttons, flash messages, titles
+# module that stores all texts for the project in one place,
+# buttons, headings, messages
 from task_manager import texts
 
 

@@ -6,7 +6,8 @@ from task_manager.labels.forms import LabelForm
 from task_manager.mixins import (AuthorizationRequiredMixin,
                                  DeleteProtectionMixin)
 
-# module with texts for buttons, flash messages, titles
+# module that stores all texts for the project in one place,
+# buttons, headings, messages
 from task_manager import texts
 
 
