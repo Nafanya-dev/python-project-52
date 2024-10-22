@@ -1,7 +1,6 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy as _
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from task_manager.utils.enums import Template
 from task_manager.mixins import (AuthorizationRequiredMixin,
@@ -11,20 +10,10 @@ from task_manager.users.forms import RegisterUserForm
 
 # module containing the texts of common buttons and form titles
 from task_manager import texts
+from task_manager.users import texts as users_texts
 
 
 USER_LIST_URL = reverse_lazy('user-list-page')
-
-PERMISSION_MESSAGE = _("""You do not have permission to change another user.""")
-REGISTER_USER_SUCCESS_MESSAGE = _("User successfully registered")
-UPDATE_USER_SUCCESS_MESSAGE = _("User successfully changed")
-DELETE_USER_SUCCESS_MESSAGE = _("User deleted successfully")
-DELETE_USER_PROTECT_MESSAGE = _('Cannot delete user because it is in use')
-
-USERS_LIST_TITLE_TEXT = _('Users')
-SIGN_UP_TITLE_TEXT = _("Registration")
-UPDATE_USER_TITLE_TEXT = _("Edit user")
-DELETE_USER_TITLE_TEXT = _("Delete user")
 
 
 class UserListView(ListView):
@@ -36,7 +25,7 @@ class UserListView(ListView):
     template_name = 'users/user_list.html'
     context_object_name = 'users'
     extra_context = {
-        'title': USERS_LIST_TITLE_TEXT
+        'title': users_texts.USERS_LIST_TITLE_TEXT
     }
 
 
@@ -50,13 +39,13 @@ class RegisterUserView(SuccessMessageMixin, CreateView):
     form_class = RegisterUserForm
     template_name = Template.update_create.value
     extra_context = {
-        'title': SIGN_UP_TITLE_TEXT,
+        'title': users_texts.SIGN_UP_TITLE_TEXT,
         'button_text': texts.SIGN_UP_BUTTON_TEXT
     }
 
     success_url = reverse_lazy('login-page')
 
-    success_message = REGISTER_USER_SUCCESS_MESSAGE
+    success_message = users_texts.REGISTER_USER_SUCCESS_MESSAGE
 
 
 class UpdateUserView(AuthorizationRequiredMixin, UserPermissionMixin,
@@ -71,14 +60,14 @@ class UpdateUserView(AuthorizationRequiredMixin, UserPermissionMixin,
     form_class = RegisterUserForm
     template_name = Template.update_create.value
     extra_context = {
-        'title': UPDATE_USER_TITLE_TEXT,
+        'title': users_texts.UPDATE_USER_TITLE_TEXT,
         'button_text': texts.EDIT_BUTTON_TEXT
     }
 
     success_url = USER_LIST_URL
 
-    permission_message = PERMISSION_MESSAGE
-    success_message = UPDATE_USER_SUCCESS_MESSAGE
+    permission_message = users_texts.PERMISSION_MESSAGE
+    success_message = users_texts.UPDATE_USER_SUCCESS_MESSAGE
 
 
 class DeleteUserView(AuthorizationRequiredMixin, UserPermissionMixin,
@@ -93,13 +82,13 @@ class DeleteUserView(AuthorizationRequiredMixin, UserPermissionMixin,
     template_name = Template.delete.value
     context_object_name = 'object'
     extra_context = {
-        'title': DELETE_USER_TITLE_TEXT,
+        'title': users_texts.DELETE_USER_TITLE_TEXT,
         'button_text': texts.DELETE_BUTTON_TEXT,
     }
 
     success_url = USER_LIST_URL
     protected_url = USER_LIST_URL
 
-    permission_message = PERMISSION_MESSAGE
-    success_message = DELETE_USER_SUCCESS_MESSAGE
-    protected_message = DELETE_USER_PROTECT_MESSAGE
+    permission_message = users_texts.PERMISSION_MESSAGE
+    success_message = users_texts.DELETE_USER_SUCCESS_MESSAGE
+    protected_message = users_texts.DELETE_USER_PROTECT_MESSAGE

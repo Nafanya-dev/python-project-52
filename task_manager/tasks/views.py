@@ -1,5 +1,4 @@
 from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy as _
 from django.contrib.messages.views import SuccessMessageMixin
 from django_filters.views import FilterView
 from django.views.generic import (CreateView, UpdateView,
@@ -15,22 +14,10 @@ from task_manager.tasks.filters import TaskFilter
 
 # module containing the texts of common buttons and form titles
 from task_manager import texts
+from task_manager.tasks import texts as tasks_texts
 
 
 TASK_LIST_URL = reverse_lazy('task-list-page')
-
-CREATE_TASK_SUCCESS_MESSAGE = _('Task created successfully')
-UPDATE_TASK_SUCCESS_MESSAGE = _('Task successfully changed')
-DELETE_TASK_SUCCESS_MESSAGE = _('Task successfully deleted')
-AUTHOR_TASK_MESSAGE = _('Only its author can delete a task')
-
-TASKS_LIST_TITLE_TEXT = _('Tasks')
-UPDATE_TASK_TITLE_TEXT = _('Change task')
-DELETE_TASK_TITLE_TEXT = _('Delete task')
-DETAIL_TASK_TITLE_TEXT = _('View a task')
-
-CREATE_TASK_TEXT = _('Create a task')
-BUTTON_FILTER_TEXT = _('Show')
 
 
 class TaskListView(AuthorizationRequiredMixin, FilterView):
@@ -44,9 +31,9 @@ class TaskListView(AuthorizationRequiredMixin, FilterView):
     context_object_name = 'tasks'
     filterset_class = TaskFilter
     extra_context = {
-        'title': TASKS_LIST_TITLE_TEXT,
-        'button_text': CREATE_TASK_TEXT,
-        'button_filter_text': BUTTON_FILTER_TEXT
+        'title': tasks_texts.TASKS_LIST_TITLE_TEXT,
+        'button_text': tasks_texts.CREATE_TASK_TEXT,
+        'button_filter_text': tasks_texts.BUTTON_FILTER_TEXT
     }
 
     def get_queryset(self):
@@ -63,7 +50,7 @@ class TaskDetailView(AuthorizationRequiredMixin, DetailView):
     template_name = 'tasks/detail_task.html'
     context_object_name = 'task'
     extra_context = {
-        'title': DETAIL_TASK_TITLE_TEXT
+        'title': tasks_texts.DETAIL_TASK_TITLE_TEXT
     }
 
 
@@ -79,7 +66,7 @@ class CreateTaskView(AuthorizationRequiredMixin, SuccessMessageMixin,
     form_class = TaskForm
     template_name = Template.update_create.value
     extra_context = {
-        'title': CREATE_TASK_TEXT,
+        'title': tasks_texts.CREATE_TASK_TEXT,
         'button_text': texts.CREATE_BUTTON_TEXT
     }
 
@@ -89,7 +76,7 @@ class CreateTaskView(AuthorizationRequiredMixin, SuccessMessageMixin,
 
     success_url = TASK_LIST_URL
 
-    success_message = CREATE_TASK_SUCCESS_MESSAGE
+    success_message = tasks_texts.CREATE_TASK_SUCCESS_MESSAGE
 
 
 class UpdateTaskView(AuthorizationRequiredMixin, SuccessMessageMixin,
@@ -105,13 +92,13 @@ class UpdateTaskView(AuthorizationRequiredMixin, SuccessMessageMixin,
     form_class = TaskForm
     template_name = Template.update_create.value
     extra_context = {
-        'title': UPDATE_TASK_TITLE_TEXT,
+        'title': tasks_texts.UPDATE_TASK_TITLE_TEXT,
         'button_text': texts.EDIT_BUTTON_TEXT
     }
 
     success_url = TASK_LIST_URL
 
-    success_message = UPDATE_TASK_SUCCESS_MESSAGE
+    success_message = tasks_texts.UPDATE_TASK_SUCCESS_MESSAGE
 
 
 class DeleteTaskView(AuthorizationRequiredMixin, AuthorDeletionMixin,
@@ -126,12 +113,12 @@ class DeleteTaskView(AuthorizationRequiredMixin, AuthorDeletionMixin,
     template_name = Template.delete.value
     context_object_name = 'object'
     extra_context = {
-        'title': DELETE_TASK_TITLE_TEXT,
+        'title': tasks_texts.DELETE_TASK_TITLE_TEXT,
         'button_text': texts.DELETE_BUTTON_TEXT
     }
 
     success_url = TASK_LIST_URL
     author_redirect_url = TASK_LIST_URL
 
-    success_message = DELETE_TASK_SUCCESS_MESSAGE
-    author_message = AUTHOR_TASK_MESSAGE
+    success_message = tasks_texts.DELETE_TASK_SUCCESS_MESSAGE
+    author_message = tasks_texts.AUTHOR_TASK_MESSAGE
