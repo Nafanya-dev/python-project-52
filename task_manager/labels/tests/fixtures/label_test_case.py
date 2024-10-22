@@ -1,4 +1,4 @@
-from task_manager.fixtures.base_test_case import BaseTestCase
+from task_manager.tests.base_test_case import BaseTestCase
 from django.urls import reverse_lazy
 from task_manager.labels.models import LabelModel
 
