@@ -37,7 +37,7 @@ class RegisterUserView(SuccessMessageMixin, CreateView):
     Method POST Creates a new user and redirects to the login page ('/login/')
     """
     form_class = RegisterUserForm
-    template_name = Template.update_create.value
+    template_name = Template.update_create
     extra_context = {
         'title': users_texts.SIGN_UP_TITLE_TEXT,
         'button_text': texts.SIGN_UP_BUTTON_TEXT
@@ -58,7 +58,7 @@ class UpdateUserView(AuthorizationRequiredMixin, UserPermissionMixin,
     """
     model = get_user_model()
     form_class = RegisterUserForm
-    template_name = Template.update_create.value
+    template_name = Template.update_create
     extra_context = {
         'title': users_texts.UPDATE_USER_TITLE_TEXT,
         'button_text': texts.EDIT_BUTTON_TEXT
@@ -79,7 +79,7 @@ class DeleteUserView(AuthorizationRequiredMixin, UserPermissionMixin,
     Method POST delete user and redirects to the user list page
     """
     model = get_user_model()
-    template_name = Template.delete.value
+    template_name = Template.delete
     context_object_name = 'object'
     extra_context = {
         'title': users_texts.DELETE_USER_TITLE_TEXT,

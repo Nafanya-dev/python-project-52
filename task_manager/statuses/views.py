@@ -44,7 +44,7 @@ class CreateStatusView(AuthorizationRequiredMixin, SuccessMessageMixin,
     to the status list page ('/statuses/')
     """
     form_class = StatusForm
-    template_name = Template.update_create.value
+    template_name = Template.update_create
     extra_context = {
         'title': statuses_texts.CREATE_STATUS_TEXT,
         'button_text': texts.CREATE_BUTTON_TEXT
@@ -66,7 +66,7 @@ class UpdateStatusView(AuthorizationRequiredMixin, SuccessMessageMixin,
     """
     model = Status
     form_class = StatusForm
-    template_name = Template.update_create.value
+    template_name = Template.update_create
     extra_context = {
         'title': statuses_texts.UPDATE_STATUS_TITLE_TEXT,
         'button_text': texts.EDIT_BUTTON_TEXT
@@ -86,7 +86,7 @@ class DeleteStatusView(AuthorizationRequiredMixin, DeleteProtectionMixin,
     Method POST delete status and redirects to the status list page
     """
     model = Status
-    template_name = Template.delete.value
+    template_name = Template.delete
     context_object_name = 'object'
     extra_context = {
         'title': statuses_texts.DELETE_STATUS_TITLE_TEXT,

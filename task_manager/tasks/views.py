@@ -64,7 +64,7 @@ class CreateTaskView(AuthorizationRequiredMixin, SuccessMessageMixin,
     to the task list page ('/tasks/')
     """
     form_class = TaskForm
-    template_name = Template.update_create.value
+    template_name = Template.update_create
     extra_context = {
         'title': tasks_texts.CREATE_TASK_TEXT,
         'button_text': texts.CREATE_BUTTON_TEXT
@@ -90,7 +90,7 @@ class UpdateTaskView(AuthorizationRequiredMixin, SuccessMessageMixin,
     """
     model = TaskModel
     form_class = TaskForm
-    template_name = Template.update_create.value
+    template_name = Template.update_create
     extra_context = {
         'title': tasks_texts.UPDATE_TASK_TITLE_TEXT,
         'button_text': texts.EDIT_BUTTON_TEXT
@@ -110,7 +110,7 @@ class DeleteTaskView(AuthorizationRequiredMixin, AuthorDeletionMixin,
     Method POST delete task and redirects to the task list page
     """
     model = TaskModel
-    template_name = Template.delete.value
+    template_name = Template.delete
     context_object_name = 'object'
     extra_context = {
         'title': tasks_texts.DELETE_TASK_TITLE_TEXT,

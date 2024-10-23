@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 HOST = os.getenv('HOST')
-DOMAIN = os.getenv('DOMAIN')
+DOMAIN = os.getenv('DOMAIN', 'http://127.0.0.1')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', False)
@@ -37,7 +37,6 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = [
     DOMAIN,
     'http://localhost',
-    'http://127.0.0.1',
 ]
 
 # Application definition

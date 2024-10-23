@@ -43,7 +43,7 @@ class CreateLabelView(AuthorizationRequiredMixin, SuccessMessageMixin,
     to the label list page ('/labels/')
     """
     form_class = LabelForm
-    template_name = Template.update_create.value
+    template_name = Template.update_create
     extra_context = {
         'title': labels_texts.CREATE_LABEL_TEXT,
         'button_text': texts.CREATE_BUTTON_TEXT
@@ -65,7 +65,7 @@ class UpdateLabelView(AuthorizationRequiredMixin, SuccessMessageMixin,
     """
     model = LabelModel
     form_class = LabelForm
-    template_name = Template.update_create.value
+    template_name = Template.update_create
     extra_context = {
         'title': labels_texts.UPDATE_LABEL_TITLE_TEXT,
         'button_text': texts.EDIT_BUTTON_TEXT
@@ -85,7 +85,7 @@ class DeleteLabelView(AuthorizationRequiredMixin, DeleteProtectionMixin,
     Method POST delete label and redirects to the label list page
     """
     model = LabelModel
-    template_name = Template.delete.value
+    template_name = Template.delete
     context_object_name = 'object'
     extra_context = {
         'title': labels_texts.DELETE_LABEL_TITLE_TEXT,
