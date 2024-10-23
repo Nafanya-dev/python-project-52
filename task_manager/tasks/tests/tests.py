@@ -1,5 +1,5 @@
-from task_manager.tasks.tests.fixtures.task_test_case import TaskTestCase
-from task_manager.tasks.tests.fixtures.filter_tasks_test_case import FilterTaskTestCase
+from task_manager.tasks.tests.task_test_case import TaskTestCase
+from task_manager.tasks.tests.filter_tasks_test_case import FilterTaskTestCase
 from task_manager.tasks.models import TaskModel
 
 

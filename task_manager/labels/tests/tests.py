@@ -1,4 +1,4 @@
-from task_manager.labels.tests.fixtures.label_test_case import LabelTestCase
+from task_manager.labels.tests.label_test_case import LabelTestCase
 
 from task_manager.labels.models import LabelModel
 

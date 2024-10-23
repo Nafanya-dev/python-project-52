@@ -1,4 +1,4 @@
-from task_manager.users.tests.fixtures.user_test_case import UserTestCase
+from task_manager.users.tests.user_test_case import UserTestCase
 from django.contrib.auth import get_user_model
 
 
