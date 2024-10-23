@@ -32,6 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 HOST = os.getenv('HOST')
+DOMAIN = os.getenv('DOMAIN')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', False)
@@ -46,7 +47,7 @@ ALLOWED_HOSTS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://task-manager-1esk.onrender.com',
+    DOMAIN,
     'http://localhost',
     'http://127.0.0.1',
 ]
