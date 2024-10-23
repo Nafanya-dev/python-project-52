@@ -74,7 +74,9 @@ class DeleteStatusViewTest(StatusTestCase):
     def test_delete_status(self):
         self.client.force_login(self.user)
 
+        self.assertEqual(Status.objects.count(), 1)
         response = self.client.post(self.get_urls().get('delete_url'))
 
+        self.assertEqual(Status.objects.count(), 0)
         self.assertFalse(Status.objects.filter(pk=self.status.pk).exists())
         self.assertRedirects(response, self.get_urls().get('status_list_url'))

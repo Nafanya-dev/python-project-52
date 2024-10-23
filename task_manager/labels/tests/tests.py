@@ -74,7 +74,9 @@ class DeleteLabelViewTest(LabelTestCase):
     def test_delete_label(self):
         self.client.force_login(self.user)
 
+        self.assertEqual(LabelModel.objects.count(), 1)
         response = self.client.post(self.get_urls().get('delete_url'))
 
+        self.assertEqual(LabelModel.objects.count(), 0)
         self.assertFalse(LabelModel.objects.filter(pk=self.label.pk).exists())
         self.assertRedirects(response, self.get_urls().get('label_list_url'))

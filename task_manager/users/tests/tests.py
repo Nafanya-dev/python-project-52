@@ -71,7 +71,10 @@ class DeleteUserViewTest(UserTestCase):
     def test_delete_user(self):
         self.client.force_login(self.user)
 
+        self.assertEqual(USER.objects.count(), 2)
         response = self.client.post(self.get_urls().get('delete_url'))
+
+        self.assertEqual(USER.objects.count(), 1)
         self.assertFalse(USER.objects.filter(pk=self.user.pk).exists())
 
         self.assertRedirects(response, self.get_urls().get('user_list_url'))

@@ -20,10 +20,12 @@ class CreateTaskViewTest(TaskTestCase):
     def test_create_task(self):
         self.client.force_login(self.user)
 
+        self.assertEqual(TaskModel.objects.count(), 1)
         response = self.client.post(self.get_urls().get('create_url'),
                                     self.get_data().get('Create_data'))
 
         self.assertRedirects(response, self.get_urls().get('task_list_url'))
+        self.assertEqual(TaskModel.objects.count(), 2)
         self.assertTrue(TaskModel.objects.filter(name='New Task').exists())
 
 
@@ -75,7 +77,9 @@ class DeleteTaskViewTest(TaskTestCase):
     def test_delete_task(self):
         self.client.force_login(self.user)
 
+        self.assertEqual(TaskModel.objects.count(), 1)
         response = self.client.post(self.get_urls().get('delete_url'))
+        self.assertEqual(TaskModel.objects.count(), 0)
         self.assertFalse(TaskModel.objects.filter(pk=self.task.pk).exists())
         self.assertRedirects(response, self.get_urls().get('task_list_url'))
 
