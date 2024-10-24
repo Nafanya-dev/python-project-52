@@ -49,7 +49,7 @@ You can skip this step and use SQLite database locally.
 To use the application, you need to clone the repository to your computer. This is done using the `git clone` command. Clone the project:
 
 ```bash
->> git clone https://github.com/Nafanya-dev/python-project-52.git && cd python-project-52
+>> git clone https://github.com/Nafanya-dev/Task-Manager.git && cd python-project-52
 ```
 
 Then you have to install all necessary dependencies:
